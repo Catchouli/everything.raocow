@@ -1,5 +1,5 @@
 Everything::Application.routes.draw do
-  root 'channels#index'
+  root 'static_pages#home'
 
   devise_for :users
   resources :channels
