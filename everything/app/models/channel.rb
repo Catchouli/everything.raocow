@@ -1,4 +1,5 @@
 require 'youtube_it'
+require 'open-uri'
 
 class Channel < ActiveRecord::Base
   has_many :videos, dependent: :destroy
@@ -15,8 +16,24 @@ class Channel < ActiveRecord::Base
 
   end
 
+  def get_user_id
+
+    user_url = "https://gdata.youtube.com/feeds/api/users/#{self.username}"
+
+    match = open(user_url).read.match(/api\/users\/([A-Za-z0-9\-]*)/)
+
+    if match.length > 1
+      return match[1]
+    end
+
+    ""
+  end
+
   def init
     client = YouTubeIt::Client.new
+
+    self.user_id = get_user_id
+    self.save
 
     client.get_all_videos(user: self.username).each do |v|
       self.videos.new(title: v.title,

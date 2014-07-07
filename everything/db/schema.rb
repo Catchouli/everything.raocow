@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707043622) do
+ActiveRecord::Schema.define(version: 20140707125123) do
 
   create_table "categories", force: true do |t|
     t.integer "cat_type", default: 0, null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140707043622) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "alias"
+    t.string   "user_id"
   end
 
   add_index "channels", ["updated_at"], name: "index_channels_on_updated_at"

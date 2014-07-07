@@ -18,6 +18,7 @@ gem 'rufus-scheduler'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'gon'
+gem 'paperclip'
 
 gem 'devise'
 

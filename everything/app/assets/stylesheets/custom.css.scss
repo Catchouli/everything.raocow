@@ -272,7 +272,7 @@ input
   }
 }
 
-/* Users index */
+/* users */
 
 .users
 {
@@ -290,6 +290,13 @@ input
       border-bottom: 1px solid $gray-lighter;
     }
   }
+}
+
+/* channels */
+
+.channel-img
+{
+  width: 50px;
 }
 
 /* sign in */
