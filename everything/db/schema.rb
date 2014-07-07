@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706232407) do
+ActiveRecord::Schema.define(version: 20140707013557) do
 
   create_table "channels", force: true do |t|
-    t.string   "name"
+    t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "alias"
   end
 
-  add_index "channels", ["name"], name: "index_channels_on_name", unique: true
   add_index "channels", ["updated_at"], name: "index_channels_on_updated_at"
+  add_index "channels", ["username"], name: "index_channels_on_username", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

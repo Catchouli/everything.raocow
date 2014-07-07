@@ -3,12 +3,22 @@ require 'youtube_it'
 class Channel < ActiveRecord::Base
   has_many :videos
 
-  validates :name, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
+
+  def name
+
+    if self.alias
+      return self.alias
+    end
+
+    self.username
+
+  end
 
   def init
     client = YouTubeIt::Client.new
 
-    client.get_all_videos(user: self.name).each do |v|
+    client.get_all_videos(user: self.username).each do |v|
       self.videos.new(title: v.title,
                       video_id: v.unique_id,
                       published_at: v.published_at)
@@ -27,7 +37,7 @@ class Channel < ActiveRecord::Base
 
       time_range = last_updated .. (Date.today+1)
 
-      query = { user: self.name, fields: { published: time_range } }
+      query = { user: self.username, fields: { published: time_range } }
 
         client.videos_by(query).videos.each do |v|
           logger.info "Adding video: #{v.title}"
