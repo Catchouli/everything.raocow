@@ -238,7 +238,6 @@ aside
 input, textarea, select, .uneditable-input
 {
   border: 1px solid #bbb;
-  width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -250,7 +249,7 @@ input
 
 /* lists */
 
-.channels, .categories
+.list_of_links
 {
   list-style: none;
   margin: 0;
@@ -293,4 +292,9 @@ input
 #user_remember_me
 {
   width: 100px;
+}
+
+.multiselect
+{
+  width: 450px;
 }

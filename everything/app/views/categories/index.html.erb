@@ -1,8 +1,8 @@
 <% provide(:title, "All categories") %>
 
-<h1>All categories</h1>
+<h1>All <%= @cat_type.pluralize(0) %></h1>
 
-<ul class="categories">
+<ul class="list_of_links">
   <%= render @categories %>
 </ul>
 
@@ -10,7 +10,7 @@
 
   <br><br>
 
-  <%= link_to "Add category", new_category_path %>
+  <%= link_to "Add #{@cat_type}", send("new_#{@cat_type}_path") %>
 
 <% end %>
 

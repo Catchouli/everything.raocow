@@ -1,0 +1,13 @@
+<% provide(:title, "Videos in category #{@category.name}") %>
+
+<h1>Videos in category <%= @category.name %></h1>
+
+<ul class="list_of_links">
+
+  <% @videos.each do |v| %>
+
+    <li><%= link_to v.title, video_url(v)  %></li>
+
+  <% end %>
+
+</ul>

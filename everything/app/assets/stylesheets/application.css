@@ -10,4 +10,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require jquery-ui
+ *= require jquery.multiselect
+ *= require jquery.multiselect.filter
  */

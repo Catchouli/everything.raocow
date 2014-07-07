@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707032707) do
+ActiveRecord::Schema.define(version: 20140707043622) do
 
   create_table "categories", force: true do |t|
     t.integer "cat_type", default: 0, null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140707032707) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role",                   default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

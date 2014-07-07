@@ -1,14 +1,18 @@
 <% provide(:title, "Add new category") %>
 
-<h1>Add new category</h1>
+<h1>Add new <%= @cat_type %></h1>
 
-<%= form_for @category do |f| %>
+<div class="center">
 
-  <%= render 'shared/error_messages', object: @category %>
+  <%= form_for @category do |f| %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+    <%= render 'shared/error_messages', object: @category %>
 
-  <%= f.submit %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-<% end %>
+    <%= f.submit "Create #{@cat_type}" %>
+
+  <% end %>
+
+</div>

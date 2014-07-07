@@ -1,0 +1,22 @@
+<% provide(:title, "Editing video #{@video.title}") %>
+
+<h1>Editing video <%= @video.title %></h1>
+
+<div class="center">
+
+  <%= form_for @video do |f| %>
+
+    <%= f.label :select_categories %>
+
+    <%= f.select :category_ids,
+                 options_from_collection_for_select(@categories, :id, :name,
+                                                     @video.categories.map { |c| c.id }),
+                                                     {},
+                 :multiple => true,
+                 :class => "multiselect" %>
+
+    <%= f.submit %>
+
+  <% end %>
+
+</div>

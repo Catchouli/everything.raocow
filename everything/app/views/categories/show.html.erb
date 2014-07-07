@@ -2,11 +2,19 @@
 
 <h1><%= @category.name %> videos</h1>
 
+<% if user_signed_in? %>
+
+  <%= link_to 'Add videos', edit_category_url(@category) %>
+
+  <br><br>
+
+<% end %>
+
 <ul>
 
   <% @videos.each do |v| %>
 
-    <li><%= link_to v.title, v.player_url %></li>
+    <li><%= link_to v.title, video_url(v) %></li>
 
   <% end %>
 

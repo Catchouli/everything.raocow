@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_start_time
 
+  include UserHelper
+
   protected
     def set_start_time
       @start_time = Time.now
