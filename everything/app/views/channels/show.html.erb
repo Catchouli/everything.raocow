@@ -2,4 +2,10 @@
 
 <h1><%= @channel.name %>'s videos</h1>
 
+<% if user_signed_in? && current_user.admin? %>
+
+  <%= link_to 'Edit channel', edit_channel_path(@channel) %>
+
+<% end %>
+
 <%= render 'shared/videos' %>

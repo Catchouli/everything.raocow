@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :authenticate_admin, only: [:destroy]
   before_filter :set_cat_type,       except: [:create]
+  before_filter :category_exists,    except: [:index, :new, :create]
 
   helper_method :category_path
   helper_method :edit_category_path
@@ -22,15 +23,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by_id(params[:id])
-
-    if @category
-      @videos = @category.videos.paginate(page: params[:page],
+    @videos = @category.videos.paginate(page: params[:page],
                                        per_page: 20).order('published_at DESC')
-    else
-      flash[:error] = "Invalid category id #{params[:id]}"
-      redirect_to categories_path
-    end
   end
 
   def new
@@ -55,52 +49,36 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find_by_id(params[:id])
-
-    if @category == nil
-      flash[:error] = "Invalid category id #{params[:id]}"
-      redirect_to categories_path
-      return
-    end
-
     @videos = Video.all
   end
 
   def update
-    category = Category.find_by_id(params[:id])
 
-    if category == nil
+    videos = (params["category"]["video_ids"] - [""]).map{ |c| c.to_i }
 
-      flash[:error] = "Invalid category id #{params[:id]}"
-      redirect_to categories_path 
+    Categorisation.where(category_id: category.id).delete_all
 
-    else
+    Categorisation.create(videos.map { |v| { category_id: category.id, video_id: v } })
 
-      videos = (params["category"]["video_ids"] - [""]).map{ |c| c.to_i }
-
-      Categorisation.where(category_id: category.id).delete_all
-
-      Categorisation.create(videos.map { |v| { category_id: category.id, video_id: v } })
-
-      redirect_to category_path(category)
-
-    end
+    redirect_to category_path(category)
   end
 
   def destroy
-    @category = Category.find_by_id(params[:id])
+    @category.destroy if @category
 
-    if @category
-      @category.destroy if @category
-
-      redirect_to action: :index
-    else
-      flash[:error] = "Invalid category id #{params[:id]}"
-      redirect_to categories_path
-    end
+    redirect_to action: :index
   end
 
   private
+
+    def category_exists
+      @category = Category.find_by_id(params[:id])
+
+      if @category == nil
+        flash[:error] = "No such category #{params[:id]}"
+        redirect_to categories_url
+      end
+    end
 
     def category_params
       params.require(:category).permit(:name)
