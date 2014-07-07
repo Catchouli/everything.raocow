@@ -1,6 +1,9 @@
 class Video < ActiveRecord::Base
   belongs_to :channel
 
+  has_many :categorisations, dependent: :destroy
+  has_many :categories, through: :categorisations
+
   validates :title, presence: true
   validates :video_id, presence: true, uniqueness: true
   validates :published_at, presence: true

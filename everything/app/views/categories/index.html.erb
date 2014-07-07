@@ -1,0 +1,17 @@
+<% provide(:title, "All categories") %>
+
+<h1>All categories</h1>
+
+<ul class="categories">
+  <%= render @categories %>
+</ul>
+
+<% if user_signed_in? %>
+
+  <br><br>
+
+  <%= link_to "Add category", new_category_path %>
+
+<% end %>
+
+<%= will_paginate @categories %>

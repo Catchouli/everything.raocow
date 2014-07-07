@@ -1,0 +1,17 @@
+<% provide(:title, "All categories") %>
+
+<h1><%= @category.name %> videos</h1>
+
+<ul>
+
+  <% @videos.each do |v| %>
+
+    <li><%= link_to v.title, v.player_url %></li>
+
+  <% end %>
+
+  <br>
+
+</ul>
+
+<%= will_paginate @videos %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707025905) do
+ActiveRecord::Schema.define(version: 20140707032707) do
 
   create_table "categories", force: true do |t|
     t.integer "cat_type", default: 0, null: false
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20140707025905) do
   end
 
   add_index "categories", ["cat_type", "name"], name: "index_categories_on_cat_type_and_name", unique: true
+
+  create_table "categorisations", force: true do |t|
+    t.integer  "video_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categorisations", ["video_id", "category_id"], name: "index_categorisations_on_video_id_and_category_id", unique: true
 
   create_table "channels", force: true do |t|
     t.string   "username"
