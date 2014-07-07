@@ -10,16 +10,4 @@
 
 <% end %>
 
-<ul>
-
-  <% @videos.each do |v| %>
-
-    <li><%= link_to v.title, video_url(v) %></li>
-
-  <% end %>
-
-  <br>
-
-</ul>
-
-<%= will_paginate @videos %>
+<%= render 'shared/videos' %>

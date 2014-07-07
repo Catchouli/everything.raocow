@@ -22,8 +22,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    gon.categories = Category.all.map { |c| { name: c.name } }
-
     @category = Category.find_by_id(params[:id])
 
     if @category
@@ -62,6 +60,7 @@ class CategoriesController < ApplicationController
     if @category == nil
       flash[:error] = "Invalid category id #{params[:id]}"
       redirect_to categories_path
+      return
     end
 
     @videos = Video.all
@@ -167,7 +166,7 @@ class CategoriesController < ApplicationController
         return super(id)
       end
 
-      return send("edit_#{@cat_type}_path", id)
+      return send("#{@cat_type}_path", id)
     end
 
     def category_videos_url(id)
@@ -211,6 +210,6 @@ class CategoriesController < ApplicationController
         return super(id)
       end
 
-      return send("edit_#{@cat_type}_url", id)
+      return send("#{@cat_type}_url", id)
     end
 end

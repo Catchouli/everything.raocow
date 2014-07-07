@@ -4,14 +4,14 @@
 
 <div class="center">
 
-  <%= form_for @category do |f| %>
+  <%= form_for @category, as: :category, url: category_url(@category), method: :patch do |f| %>
 
     <%= f.label :select_videos %>
 
     <%= f.select :video_ids,
                  options_from_collection_for_select(@videos, :id, :title,
-                                                    @category.videos.map { |v| v.id }),
-                 {},
+                                                     @category.videos.map { |c| c.id }),
+                                                     {},
                  :multiple => true,
                  :class => "multiselect" %>
 

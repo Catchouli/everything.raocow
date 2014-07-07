@@ -1,0 +1,21 @@
+<div class="center">
+
+  <%= will_paginate @videos %>
+
+  <% @videos.each do |v| %>
+
+    <a href="#" class="row block_link">
+
+      <span class="col-md-4"><img src="http://i1.ytimg.com/vi/<%= v.video_id %>/default.jpg"></span>
+
+      <span class="col-md-8"><%= v.title %></span>
+
+    </a>
+
+  <% end %>
+
+  <br>
+
+  <%= will_paginate @videos %>
+
+</div>
