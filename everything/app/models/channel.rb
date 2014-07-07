@@ -1,7 +1,7 @@
 require 'youtube_it'
 
 class Channel < ActiveRecord::Base
-  has_many :videos
+  has_many :videos, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
 
