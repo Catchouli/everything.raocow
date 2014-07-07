@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'youtube_it', github: 'kylejginavan/youtube_it'
 gem 'rufus-scheduler'
 gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 gem 'devise'
 

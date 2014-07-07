@@ -1,4 +1,6 @@
-Channel <%= @channel.name %> videos:
+<% provide(:title, "All channels") %>
+
+<h1><%= @channel.name %>'s videos</h1>
 
 <ul>
 
@@ -10,6 +12,6 @@ Channel <%= @channel.name %> videos:
 
   <br>
 
-  <%= will_paginate @videos %>
-
 </ul>
+
+<%= will_paginate @videos %>
