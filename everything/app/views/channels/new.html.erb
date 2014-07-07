@@ -1,0 +1,30 @@
+<% provide(:title, "New channel") %>
+
+<h1>New channel</h1>
+
+<div class="center">
+
+  <%= form_for @channel do |f| %>
+
+    <%= render 'shared/error_messages', object: @channel %>
+
+    <div>
+      <%= f.label :username %>
+      <br>
+      <%= f.text_field :username %>
+    </div>
+
+    <div>
+      <%= f.label :alias %>
+      <br>
+      <%= f.text_field :alias %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+
+</div>
+

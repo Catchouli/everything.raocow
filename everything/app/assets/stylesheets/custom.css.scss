@@ -4,6 +4,8 @@
 
 $gray-medium-light: #eaeaea;
 
+$channel-info-height: 50px;
+
 @mixin box_sizing
 {
   -moz-box-sizing: border-box;
@@ -134,6 +136,11 @@ footer
 }
 
 /* miscellaneous */
+
+.pagination
+{
+  text-align: center;
+}
 
 .debug_dump
 {
@@ -296,7 +303,32 @@ input
 
 .channel-img
 {
-  width: 50px;
+  width: $channel-info-height;
+}
+
+.video
+{
+  padding-top: 10px;
+  width: 66.666666667%;
+  margin: 0 auto;
+
+  &:hover
+  {
+    text-decoration: none;
+  }
+}
+
+.video-thumb
+{
+  display: inline-block;
+}
+
+.video-info
+{
+  text-align: left;
+  display: inline-block;
+
+  vertical-align: middle;
 }
 
 /* sign in */

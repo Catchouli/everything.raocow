@@ -1,11 +1,11 @@
 Everything::Application.routes.draw do
-  root 'static_pages#home'
+  root 'videos#index'
 
   devise_for :users
 
   resources :channels
 
-  resources :videos, except: [:index] do
+  resources :videos do
     resources :categories, only: [:index]
   end
 

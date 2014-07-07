@@ -1,10 +1,12 @@
-<% provide(:title, "Editing category #{@category.name}") %>
+<% provide(:title, "Editing #{@cat_type} #{@category.name}") %>
 
-<h1>Editing category <%= @category.name %></h1>
+<h1>Editing <%= @cat_type %> <%= @category.name %></h1>
 
 <div class="center">
 
   <%= form_for @category, as: :category, url: category_url(@category), method: :patch do |f| %>
+
+    <%= render 'shared/error_messages', object: @category %>
 
     <%= f.label :select_videos %>
 

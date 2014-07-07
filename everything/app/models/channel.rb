@@ -8,7 +8,7 @@ class Channel < ActiveRecord::Base
 
   def name
 
-    if self.alias
+    if self.alias && self.alias != ""
       return self.alias
     end
 

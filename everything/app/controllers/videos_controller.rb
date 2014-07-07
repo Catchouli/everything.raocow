@@ -3,12 +3,8 @@ class VideosController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :update]
 
   def index
-    category_id = params[:category_id]
-
-    if category_id
-      @category = Category.find_by_id(category_id)
-      @videos = @category.videos
-    end
+    @videos = Video.paginate(page: params[:page],
+                              per_page: 20).order('published_at DESC')
   end
 
   def show

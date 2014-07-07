@@ -1,17 +1,17 @@
-<% provide(:title, "Add new category") %>
+<% provide(:title, "New #{@cat_type}") %>
 
-<h1>Add new <%= @cat_type %></h1>
+<h1>New <%= @cat_type %></h1>
 
 <div class="center">
 
-  <%= form_for @category do |f| %>
+  <%= form_for @category, as: :category, url: categories_path, method: :post do |f| %>
 
     <%= render 'shared/error_messages', object: @category %>
 
     <%= f.label :name %>
     <%= f.text_field :name %>
 
-    <%= f.submit "Create #{@cat_type}" %>
+    <%= f.submit %>
 
   <% end %>
 

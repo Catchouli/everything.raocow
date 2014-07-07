@@ -5,7 +5,7 @@
     | <%= link_to "edit", edit_category_path(category) %>
 
     <% if current_user.admin? %>
-      | <%= link_to "delete", category_url(category), method: :delete %>
+      | <%= link_to "delete", category_url(category), data: { confirm: 'Are you sure?' }, method: :delete %>
     <% end %>
   <% end %>
 </li>

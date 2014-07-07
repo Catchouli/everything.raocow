@@ -1,21 +1,49 @@
+<% unless defined? options %>
+
+  <% options = { info: [:title, :time] } %>
+
+<% end %>
+
 <div class="center">
-
   <%= will_paginate @videos %>
+</div>
 
-  <% @videos.each do |v| %>
+<% @videos.each do |v| %>
 
-    <a href="#" class="row block_link">
+  <a href="<%= video_url(v) %>" class="row block_link video">
 
-      <span class="col-md-4"><img src="http://i1.ytimg.com/vi/<%= v.video_id %>/default.jpg"></span>
+    <span class="col-md-2 video-thumb">
+      <img src="http://i1.ytimg.com/vi/<%= v.video_id %>/default.jpg">
+    </span>
 
-      <span class="col-md-8"><%= v.title %></span>
+    <span class="col-md-10 video-info">
 
-    </a>
+      <% options[:info].each do |opt| %>
 
-  <% end %>
+        <% case opt %>
+          <% when :title %>
+            <%= v.title %>  
 
-  <br>
+          <% when :time %>
+            <%= time_ago_in_words(v.published_at) %> ago
 
+          <% when :channel %>
+            <%= v.channel.name %>
+
+        <% end %>
+
+        <br>
+
+      <% end %>
+
+    </span>
+
+  </a>
+
+<% end %>
+
+<br>
+
+<div class="center">
   <%= will_paginate @videos %>
-
 </div>

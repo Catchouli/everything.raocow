@@ -56,16 +56,19 @@ class CategoriesController < ApplicationController
 
     videos = (params["category"]["video_ids"] - [""]).map{ |c| c.to_i }
 
-    Categorisation.where(category_id: category.id).delete_all
+    Categorisation.where(category_id: @category.id).delete_all
 
-    Categorisation.create(videos.map { |v| { category_id: category.id, video_id: v } })
+    Categorisation.create(videos.map { |v| { category_id: @category.id, video_id: v } })
 
-    redirect_to category_path(category)
+    flash[:success] = "Successfully updated #{@cat_type} #{@category.name}"
+
+    redirect_to category_path(@category)
   end
 
   def destroy
     @category.destroy if @category
 
+    flash[:success] = "Successfully destroyed #{@cat_type} #{@category.name}"
     redirect_to action: :index
   end
 
@@ -75,7 +78,7 @@ class CategoriesController < ApplicationController
       @category = Category.find_by_id(params[:id])
 
       if @category == nil
-        flash[:error] = "No such category #{params[:id]}"
+        flash[:error] = "No such #{@cat_type} #{params[:id]}"
         redirect_to categories_url
       end
     end
@@ -97,7 +100,7 @@ class CategoriesController < ApplicationController
       @cat_type = cat_type
 
       unless Category.cat_types.has_key?(cat_type)
-        flash.now[:error] = "Invalid category type: #{cat_type}"
+        flash.now[:error] = "Invalid #{@cat_type} type: #{cat_type}"
         @cat_type = "category"
       end      
     end
