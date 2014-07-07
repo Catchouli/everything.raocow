@@ -1,0 +1,9 @@
+<% provide(:title, "All channels") %>
+
+<h1>All channels</h1>
+
+<ul class="channels">
+  <%= render @channels %>
+</ul>
+
+<%= will_paginate @channels %>

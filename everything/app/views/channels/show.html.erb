@@ -1,0 +1,15 @@
+Channel <%= @channel.name %> videos:
+
+<ul>
+
+  <% @videos.each do |v| %>
+
+    <li><%= link_to v.title, v.player_url %></li>
+
+  <% end %>
+
+  <br>
+
+  <%= will_paginate @videos %>
+
+</ul>
