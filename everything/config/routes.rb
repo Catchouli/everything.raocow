@@ -5,6 +5,8 @@ Everything::Application.routes.draw do
 
   resources :channels
 
+  get 'videos/random', to: 'videos#random'
+
   resources :videos do
     resources :categories, only: [:index]
   end

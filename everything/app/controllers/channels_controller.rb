@@ -27,8 +27,6 @@ class ChannelsController < ApplicationController
     @channel = Channel.new(p)
 
     if @channel.save
-      @channel.init
-
       flash[:success] = "Successfully created channel #{@channel.name }"
       redirect_to channel_url(@channel)
     else

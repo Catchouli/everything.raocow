@@ -19,6 +19,8 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'gon'
 gem 'paperclip'
+gem 'fitvidsjs_rails'
+gem 'oauth2'
 
 gem 'devise'
 

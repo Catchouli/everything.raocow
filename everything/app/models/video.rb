@@ -11,4 +11,8 @@ class Video < ActiveRecord::Base
   def player_url
     "http://www.youtube.com/watch?v=#{video_id}&feature=youtube_gdata_player"
   end
+
+  def self.random
+    Video.offset(rand(Video.count)).limit(1)[0]
+  end
 end

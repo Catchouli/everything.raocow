@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require jquery-ui
 //= require jquery.multiselect
+//= require fitvids
 //= require_tree .

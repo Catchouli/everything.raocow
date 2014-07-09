@@ -27,6 +27,14 @@ class VideosController < ApplicationController
     end
   end
 
+  def random
+    if Video.count == 0
+      redirect_to root_url
+    else
+      redirect_to video_url(Video.random.id)
+    end
+  end
+
   def update
     video = Video.find_by_id(params[:id])
 
