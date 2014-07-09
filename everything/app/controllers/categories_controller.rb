@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   before_filter :authenticate_admin, only: [:destroy]
   before_filter :set_cat_type,       except: [:create]
   before_filter :category_exists,    except: [:index, :new, :create]
+  before_filter :check_correct_type, only: [:show, :edit]
 
   helper_method :category_path
   helper_method :edit_category_path
@@ -80,6 +81,18 @@ class CategoriesController < ApplicationController
       if @category == nil
         flash[:error] = "No such #{@cat_type} #{params[:id]}"
         redirect_to categories_url
+      end
+    end
+
+    def check_correct_type
+      category = Category.find_by_id(params[:id])
+
+      current_uri = request.env['PATH_INFO']
+
+      correct_uri = current_uri.sub(%r{^/(.*)/}, "/#{category.cat_type.pluralize(0)}/")
+
+      if (current_uri != correct_uri)
+        redirect_to correct_uri
       end
     end
 

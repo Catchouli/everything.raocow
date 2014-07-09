@@ -1,4 +1,6 @@
 class Video < ActiveRecord::Base
+  searchkick
+
   include ActionView::Helpers::DateHelper
 
   belongs_to :channel

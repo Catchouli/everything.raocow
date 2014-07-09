@@ -21,6 +21,7 @@ gem 'gon'
 gem 'paperclip'
 gem 'fitvidsjs_rails'
 gem 'faraday'
+gem "searchkick"
 
 gem 'devise'
 
