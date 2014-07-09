@@ -1,0 +1,23 @@
+<%= form_for @video do |f| %>
+
+  <span class="category_type">
+
+    <%= f.label :select_categories, "Select #{categories[0].cat_type.to_s.pluralize(0)}" %>
+
+  </span>
+
+  <%= f.select :category_ids,
+               options_from_collection_for_select(categories, :id, :name,
+                                                   video.categories.map { |c| c.id }),
+                                                   {},
+               :multiple => true,
+               :class => "multiselect" %>
+
+
+  <%= hidden_field_tag 'category_ids_all', categories.map{|c| c.id}.join(',') %>
+
+  <%= f.submit %>
+
+<% end %>
+
+

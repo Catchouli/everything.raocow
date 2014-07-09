@@ -36,6 +36,7 @@ class VideosController < ApplicationController
   end
 
   def update
+
     video = Video.find_by_id(params[:id])
 
     if video == nil
@@ -45,17 +46,25 @@ class VideosController < ApplicationController
 
     else
 
-      categories = (params["video"]["category_ids"] - [""]).map{ |v| v.to_i }
+      categories_all = params["category_ids_all"].split(',').map{|c| c.to_i}
 
-      Categorisation.where(video_id: video.id).each do |c|
-        c.destroy
+      categories_selected = (params["video"]["category_ids"] - [""]).map{ |v| v.to_i }
+
+      Categorisation.where(category_id: categories_all, video_id: video).destroy_all
+
+      if Categorisation.create(categories_selected.map { |c| { category_id: c, video_id: video.id } })
+
+        flash[:success] = "Succesfully updated video"
+
+        redirect_to video_url(video)
+
+      else
+
+        flash[:error] = "Failed to update video"
+
+        redirect_to edit_video_url(video)
+
       end
-
-      categories.each do |c|
-        Categorisation.new(video_id: video.id, category_id: c).save
-      end
-
-      redirect_to video_path(video)
 
     end
   end
