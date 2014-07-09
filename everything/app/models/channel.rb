@@ -70,4 +70,8 @@ class Channel < ActiveRecord::Base
 
     true
   end
+
+  def thumbnail
+    "https://i.ytimg.com/i/#{self.user_id}/1.jpg"
+  end
 end

@@ -2,4 +2,4 @@
 
 <h1>Recently uploaded videos</h1>
 
-<%= render 'shared/videos', options: { info: [:title, :time, :channel] } %>
+<%= render 'shared/list_of_links', objects: @videos, options: { info: [:name, :time, :channel_name], thumbnails: true } %>

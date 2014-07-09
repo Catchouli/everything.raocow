@@ -1,0 +1,45 @@
+<% unless defined? options %>
+
+  <% options = { info: [:name] } %>
+
+<% end %>
+
+<div class="center">
+  <%= will_paginate @channels %>
+</div>
+
+<ul class="list_of_links">
+
+  <% @channels.each do |c| %>
+
+    <a href="<%= channel_url(c) %>"><li>
+
+      <img src="<%= c.thumbnail %>">
+
+      <span>
+
+      <% options[:info].each do |opt| %>
+
+        <% case opt %>
+          <% when :name %>
+            <%= c.name %>  
+
+        <% end %>
+
+        <br>
+
+      <% end %>
+
+      </span>
+
+    </li></a>
+
+  <% end %>
+
+</ul>
+
+<br>
+
+<div class="center">
+  <%= will_paginate @channels %>
+</div>

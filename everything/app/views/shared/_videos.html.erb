@@ -8,15 +8,15 @@
   <%= will_paginate @videos %>
 </div>
 
-<% @videos.each do |v| %>
+<ul class="list_of_links">
 
-  <a href="<%= video_url(v) %>" class="row block_link video">
+  <% @videos.each do |v| %>
 
-    <span class="col-md-2 video-thumb">
-      <img src="http://i1.ytimg.com/vi/<%= v.video_id %>/default.jpg">
-    </span>
+    <a href="<%= video_url(v) %>"><li>
 
-    <span class="col-md-10 video-info">
+      <img src="<%= v.thumbnail %>">
+
+      <span>
 
       <% options[:info].each do |opt| %>
 
@@ -36,11 +36,13 @@
 
       <% end %>
 
-    </span>
+      </span>
 
-  </a>
+    </li></a>
 
-<% end %>
+  <% end %>
+
+</ul>
 
 <br>
 

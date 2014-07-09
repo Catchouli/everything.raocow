@@ -276,6 +276,34 @@ input
     {
       border-bottom: 1px solid $gray-lighter;
     }
+
+    &:hover
+    {
+      background: $gray-lighter;
+    }
+  }
+
+  > a
+  {
+    display: block;
+    text-decoration: none;
+
+    &:hover
+    {
+      text-decoration: none;
+    }
+  }
+
+  > a > li > img
+  {
+    width: 100px;
+  }
+
+  span
+  {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 1em;
   }
 }
 

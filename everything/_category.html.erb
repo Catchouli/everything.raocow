@@ -1,0 +1,15 @@
+<a href="<%= category_url(category) %>" class="list_of_links_link">
+
+  <li>
+    <%= link_to category.name, category_url(category) %>
+
+    <% if user_signed_in? %>
+      | <%= link_to "edit", edit_category_path(category) %>
+
+      <% if current_user.admin? %>
+        | <%= link_to "delete", category_url(category), data: { confirm: 'Are you sure?' }, method: :delete %>
+      <% end %>
+    <% end %>
+  </li>
+
+</a>

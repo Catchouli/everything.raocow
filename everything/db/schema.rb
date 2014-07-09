@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707125123) do
+ActiveRecord::Schema.define(version: 20140709030454) do
 
   create_table "categories", force: true do |t|
     t.integer "cat_type", default: 0, null: false
@@ -70,5 +70,18 @@ ActiveRecord::Schema.define(version: 20140707125123) do
 
   add_index "videos", ["published_at"], name: "index_videos_on_published_at"
   add_index "videos", ["video_id"], name: "index_videos_on_video_id", unique: true
+
+  create_table "youtube_auths", force: true do |t|
+    t.integer  "singleton_guard", default: 0
+    t.string   "access_token"
+    t.string   "refresh_token"
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.string   "dev_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "youtube_auths", ["singleton_guard"], name: "index_youtube_auths_on_singleton_guard", unique: true
 
 end

@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+YoutubeAuth.new(access_token: "", refresh_token: "", client_id: "", client_secret: "", dev_key: "").save

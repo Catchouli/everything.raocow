@@ -2,9 +2,7 @@
 
 <h1>All <%= @cat_type.pluralize(0) %></h1>
 
-<ul class="list_of_links">
-  <%= render @categories %>
-</ul>
+<%= render 'shared/list_of_links', objects: @categories, options: { info: [:name], thumbnails: true } %>
 
 <% if user_signed_in? %>
 
@@ -13,5 +11,3 @@
   <%= link_to "Add #{@cat_type}", send("new_#{@cat_type}_path") %>
 
 <% end %>
-
-<%= will_paginate @categories %>
