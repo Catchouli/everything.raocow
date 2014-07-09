@@ -1,0 +1,13 @@
+<% unless defined? options %>
+
+  <% options = { info: [:name, :time, :channel_name], thumbnails: true } %>
+
+<% end %>
+
+<% provide(:title, "#{resource} search") %>
+
+<%= link_to 'Back to search form', search_videos_path %>
+
+<h1><%= resource %> search</h1>
+
+<%= render 'shared/list_of_links', objects: @results, options: options %>

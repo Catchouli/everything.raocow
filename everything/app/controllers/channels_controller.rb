@@ -55,15 +55,14 @@ class ChannelsController < ApplicationController
 
   end
 
-    private
+  private
 
-      def channel_exists
-        @channel = Channel.find_by_id(params[:id])
+    def channel_exists
+      @channel = Channel.find_by_id(params[:id])
 
-        if @channel == nil
-          flash[:error] = "No such channel #{params[:id]}"
-          redirect_to channels_url
-        end
+      if @channel == nil
+        flash[:error] = "No such channel #{params[:id]}"
+        redirect_to channels_url
       end
-
+    end
 end

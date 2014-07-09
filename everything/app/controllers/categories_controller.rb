@@ -2,9 +2,9 @@ class CategoriesController < ApplicationController
 
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :authenticate_admin, only: [:destroy]
-  before_filter :set_cat_type,       except: [:create]
-  before_filter :category_exists,    except: [:index, :new, :create]
-  before_filter :check_correct_type, only: [:show, :edit]
+  before_filter :category_exists,    except: [:index, :new, :create, :random, :search]
+#  before_filter :check_correct_type, only: [:show, :edit]
+  before_filter :set_cat_type
 
   helper_method :category_path
   helper_method :edit_category_path
@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
   helper_method :category_videos_url
 
   def index
-    @categories = Category.where(cat_type: Category.cat_types[@cat_type]).
+    @categories = Category.where(cat_type: Category.cat_types[cat_type]).
                            paginate(page: params[:page])
   end
 
@@ -32,17 +32,17 @@ class CategoriesController < ApplicationController
     @category = Category.new
 
     # Save cat_type
-    session[:cat_type] = @cat_type
+    session[:cat_type] = cat_type
   end
 
   def create
     # Restore cat_type
-    @cat_type = session[:cat_type]
+    cat_type = session[:cat_type]
 
-    @category = Category.new(category_params.merge({cat_type: @cat_type}))
+    @category = Category.new(category_params.merge({cat_type: cat_type}))
 
     if @category.save
-      flash[:success] = "#{@cat_type} #{@category.name} added"
+      flash[:success] = "#{cat_type} #{@category.name} added"
       redirect_to category_path(@category)
     else
       render 'new'
@@ -61,7 +61,7 @@ class CategoriesController < ApplicationController
 
     Categorisation.create(videos.map { |v| { category_id: @category.id, video_id: v } })
 
-    flash[:success] = "Successfully updated #{@cat_type} #{@category.name}"
+    flash[:success] = "Successfully updated #{cat_type} #{@category.name}"
 
     redirect_to category_path(@category)
   end
@@ -69,21 +69,50 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy if @category
 
-    flash[:success] = "Successfully destroyed #{@cat_type} #{@category.name}"
+    flash[:success] = "Successfully destroyed #{cat_type} #{@category.name}"
     redirect_to action: :index
   end
 
+  def random
+    if Category.count == 0
+      redirect_to root_url
+    else
+      redirect_to category_url(Category.random(cat_type))
+    end
+  end
+
+  def search
+
+    if params.has_key?(:query)
+
+      @results = Category.search(params[:query], where: { cat_type: cat_type }, page: params[:page], per_page: 30)
+
+      render 'shared/search_results.html.erb', locals: { resource: capitalize(cat_type), options: { info: [:name], thumbnails: true } }
+
+    else
+
+      render 'shared/search_form.html.erb', locals: { resource: capitalize(cat_type) }
+
+    end
+
+  end
+
   private
+
+    def capitalize(string)
+      string.slice(0,1).capitalize + string.slice(1..-1)
+    end
 
     def category_exists
       @category = Category.find_by_id(params[:id])
 
       if @category == nil
-        flash[:error] = "No such #{@cat_type} #{params[:id]}"
+        flash[:error] = "No such #{cat_type} #{params[:id]}"
         redirect_to categories_url
       end
     end
 
+    #warning currently broken TODO:
     def check_correct_type
       category = Category.find_by_id(params[:id])
 
@@ -100,110 +129,100 @@ class CategoriesController < ApplicationController
       params.require(:category).permit(:name)
     end
 
-    def cat_type
-
-      if params.has_key?(:cat_type)
-        return params[:cat_type]
-      else
-        return "category"
-      end
-    end
-
     def set_cat_type
       @cat_type = cat_type
+    end
 
-      unless Category.cat_types.has_key?(cat_type)
-        flash.now[:error] = "Invalid #{@cat_type} type: #{cat_type}"
-        @cat_type = "category"
-      end      
+    def cat_type
+      %r{^/(.*?)(/.*)?$}.match(request.original_fullpath)[1].singularize
     end
 
     # route function overrides
     def category_videos_path(id)
-      if @cat_type == "category"
+      if cat_type == "category"
         return super(id)
       end
 
-      return send("#{@cat_type}_videos_path", id)
+      return send("#{cat_type}_videos_path", id)
     end
 
     def categories_path
-      if @cat_type == "category"
+      if cat_type == "category"
         return super
       end
 
-      if @cat_type.pluralize(0) == @cat_type
-        return send("#{@cat_type}_index_path")
+      if cat_type.pluralize(0) == cat_type
+        return send("#{cat_type}_index_path")
       else
-        return send("#{@cat_type.pluralize(0)}_path")
+        return send("#{cat_type.pluralize(0)}_path")
       end
     end
 
     def new_category_path
-      if @cat_type == "category"
+      if cat_type == "category"
         return super
       end
 
-      return send("#new_{@cat_type}_path")
+      return send("#new_{cat_type}_path")
     end
 
     def edit_category_path(id)
-      if @cat_type == "category"
+      if cat_type == "category"
         return super(id)
       end
 
-      return send("edit_#{@cat_type}_path", id)
+      return send("edit_#{cat_type}_path", id)
     end
 
     def category_path(id)
-      if @cat_type == "category"
+      if cat_type == "category"
         return super(id)
       end
 
-      return send("#{@cat_type}_path", id)
+      return send("#{cat_type}_path", id)
     end
 
     def category_videos_url(id)
-      if @cat_type == "category"
+      if cat_type == "category"
         return super(id)
       end
 
-      return send("#{@cat_type}_videos_url", id)
+      return send("#{cat_type}_videos_url", id)
     end
 
     def categories_url
-      if @cat_type == "category"
+      if cat_type == "category"
         return super
       end
 
-      if @cat_type.pluralize(0) == @cat_type
-        return send("#{@cat_type}_index_url")
+      if cat_type.pluralize(0) == cat_type
+        return send("#{cat_type}_index_url")
       else
-        return send("#{@cat_type.pluralize(0)}_url")
+        return send("#{cat_type.pluralize(0)}_url")
       end
     end
 
     def new_category_url
-      if @cat_type == "category"
+      if cat_type == "category"
         return super
       end
 
-      return send("#new_{@cat_type}_url")
+      return send("#new_{cat_type}_url")
     end
 
     def edit_category_url(id)
-      if @cat_type == "category"
+      if cat_type == "category"
         return super(id)
       end
 
-      return send("edit_#{@cat_type}_url", id)
+      return send("edit_#{cat_type}_url", id)
     end
 
     def category_url(id)
-      if @cat_type == "category"
+      if cat_type == "category"
         return super(id)
       end
 
-      return send("#{@cat_type}_url", id)
+      return send("#{cat_type}_url", id)
     end
 end

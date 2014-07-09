@@ -5,13 +5,25 @@ Everything::Application.routes.draw do
 
   resources :channels
 
-  get '/search', to: 'search#index'
+  resources :videos do
+    collection do
+      get 'random'
+      get 'search'
+    end
+  end
 
-  get 'videos/random', to: 'videos#random'
+  resources :categories do
+#    collection do
+#      get 'random'
+#      get 'search'
+#    end
+  end
 
-  resources :videos
+  resources :series, controller: "categories", cat_type: "series" do
+    collection do
+      get 'random'
+      get 'search'
+    end
+  end
 
-  resources :categories
-
-  resources :series, controller: "categories", cat_type: "series"
 end

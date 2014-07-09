@@ -1,0 +1,18 @@
+<% provide(:title, "#{resource} search") %>
+
+<h1><%= resource %> search</h1>
+
+<div class="center">
+
+  <form method="get">
+
+    <%= label_tag :query, "Search query " %>
+    <%= text_field_tag :query %>
+
+    <br>
+
+    <%= submit_tag "Search", name: nil %>
+
+  </form>
+
+</div>
