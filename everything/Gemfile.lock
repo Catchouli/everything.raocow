@@ -223,6 +223,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   jquery-ui-themes
+  oauth2
   paperclip
   rails
   rufus-scheduler

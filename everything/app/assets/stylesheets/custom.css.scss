@@ -35,6 +35,11 @@ textarea
   resize: vertical;
 }
 
+form > label
+{
+  margin-bottom: 15px;
+}
+
 .center
 {
   text-align: center;
@@ -285,13 +290,19 @@ input
 
   > a
   {
-    display: block;
+    display: inline-block;
     text-decoration: none;
+    width: 500px;
 
     &:hover
     {
       text-decoration: none;
     }
+  }
+
+  > a > li > span
+  {
+    width: 350px;
   }
 
   > a > li > img

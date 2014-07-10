@@ -9,3 +9,11 @@
             allowfullscreen="true"></iframe>
   </div>
 </div>
+
+<br>
+
+<% if user_signed_in? %>
+
+  <%= link_to "Edit categories", edit_video_path(@video) %>
+
+<% end %>

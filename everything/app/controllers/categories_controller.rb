@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  include CategoryHelper
 
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   before_filter :authenticate_admin, only: [:destroy]
@@ -11,12 +12,14 @@ class CategoriesController < ApplicationController
   helper_method :new_category_path
   helper_method :categories_path
   helper_method :category_videos_path
+  helper_method :videos_random_category_path
 
   helper_method :category_url
   helper_method :edit_category_url
   helper_method :new_category_url
   helper_method :categories_url
   helper_method :category_videos_url
+  helper_method :videos_random_category_url
 
   def index
     @categories = Category.where(cat_type: Category.cat_types[cat_type]).
@@ -99,10 +102,6 @@ class CategoriesController < ApplicationController
 
   private
 
-    def capitalize(string)
-      string.slice(0,1).capitalize + string.slice(1..-1)
-    end
-
     def category_exists
       @category = Category.find_by_id(params[:id])
 
@@ -182,6 +181,14 @@ class CategoriesController < ApplicationController
       return send("#{cat_type}_path", id)
     end
 
+    def videos_random_category_path(id)
+      if cat_type == "category"
+        return super(id)
+      end
+
+      return send("videos_random_#{cat_type}_path", id)
+    end
+
     def category_videos_url(id)
       if cat_type == "category"
         return super(id)
@@ -224,5 +231,13 @@ class CategoriesController < ApplicationController
       end
 
       return send("#{cat_type}_url", id)
+    end
+
+    def videos_random_category_url(id)
+      if cat_type == "category"
+        return super(id)
+      end
+
+      return send("videos_random_#{cat_type}_url", id)
     end
 end

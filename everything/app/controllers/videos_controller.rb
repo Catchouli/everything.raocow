@@ -65,7 +65,36 @@ class VideosController < ApplicationController
     if Video.count == 0
       redirect_to root_url
     else
-      redirect_to video_url(Video.random.id)
+
+      if params.has_key?(:category_search) && params.has_key?(:id)
+
+        category = Category.find_by_id(params[:id])
+
+        cat_videos = category.videos
+
+        random_video_path = "/" + category.cat_type.pluralize(0) + "/" + category.id.to_s + "/videos/random"
+
+        flash[:random_video] = "<a href=\"#{random_video_path}\">Another random video from #{category.cat_type} #{category.name}</a>".html_safe
+
+        redirect_to video_url(cat_videos[rand(cat_videos.count)])
+
+      elsif params.has_key?(:channel_search) && params.has_key?(:id)
+
+        channel = Channel.find_by_id(params[:id])
+
+        cat_videos = channel.videos
+
+        random_video_path = videos_random_channel_path(channel)
+
+        flash[:random_video] = "<a href=\"#{random_video_path}\">Another random video from channel #{channel.name}</a>".html_safe
+
+        redirect_to video_url(cat_videos[rand(cat_videos.count)])
+
+      else
+
+        redirect_to video_url(Video.random.id)
+
+      end
     end
   end
 
@@ -73,7 +102,50 @@ class VideosController < ApplicationController
 
     if params.has_key?(:query)
 
-      @results = Video.search params[:query], page: params[:page], per_page: 30
+      cat_filter = false
+
+      categories = []
+
+      Category.cat_types.each do |c_t|
+
+        if params.has_key?("filter_" + c_t[0]) && params["filter_" + c_t[0]] == "true"
+
+          cat_filter = true
+
+          categories -= Category.where(cat_type: c_t[1]).select(:id).map{ |c| c.id }
+
+          if params.has_key?(c_t[0] + "_ids")
+
+            categories += params[c_t[0] + "_ids"].map{ |c| c.to_i }
+
+          end
+
+        end
+
+      end
+
+      if !cat_filter
+
+        categories = Category.all.select(:id).map{ |c| c.id }
+
+      end
+
+
+      if cat_filter
+      
+        cat_videos = Categorisation.where(category_id: categories).select(:video_id).map{ |v| v.video_id }
+
+        @results = Video.search params[:query],
+                                where: { id: cat_videos },
+                                page: params[:page],
+                                per_page: 20
+
+      else
+
+        @results = Video.search params[:query],
+                                page: params[:page],
+                                per_page: 20
+      end
 
       render 'shared/search_results.html.erb', locals: { resource: "Video" }
 

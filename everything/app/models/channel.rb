@@ -1,8 +1,6 @@
 require 'open-uri'
 
 class Channel < ActiveRecord::Base
-  include YoutubeClient
-
   has_many :videos, dependent: :destroy
 
   validates :username, presence: true, uniqueness: true
@@ -36,7 +34,7 @@ class Channel < ActiveRecord::Base
     self.user_id = get_user_id
     self.save
 
-    youtube_client.get_all_videos(user: self.username).each do |v|
+    YoutubeAuth.client.get_all_videos(user: self.username).each do |v|
       self.videos.new(title: v.title,
                       video_id: v.unique_id,
                       published_at: v.published_at)
@@ -55,7 +53,7 @@ class Channel < ActiveRecord::Base
 
       query = { user: self.username, fields: { published: time_range } }
 
-        youtube_client.videos_by(query).videos.each do |v|
+        YoutubeAuth.client.videos_by(query).videos.each do |v|
           logger.info "Adding video: #{v.title}"
 
           self.videos.new(title: v.title,

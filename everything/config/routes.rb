@@ -3,7 +3,11 @@ Everything::Application.routes.draw do
 
   devise_for :users
 
-  resources :channels
+  resources :channels do
+    member do
+      get 'videos/random', channel_search: nil
+    end
+  end
 
   resources :videos do
     collection do
@@ -13,10 +17,13 @@ Everything::Application.routes.draw do
   end
 
   resources :categories do
-#    collection do
-#      get 'random'
-#      get 'search'
-#    end
+    collection do
+      get 'random'
+      get 'search'
+    end
+    member do
+      get 'videos/random', category_search: nil
+    end
   end
 
   resources :series, controller: "categories", cat_type: "series" do
@@ -24,6 +31,8 @@ Everything::Application.routes.draw do
       get 'random'
       get 'search'
     end
+    member do
+      get 'videos/random', category_search: nil
+    end
   end
-
 end

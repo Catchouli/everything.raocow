@@ -2,12 +2,14 @@
 
 <h1><%= @category.name %> videos</h1>
 
+<%= link_to 'Random video', videos_random_category_path(@category) %>
+
 <% if user_signed_in? %>
 
-  <%= link_to 'Add videos', edit_category_url(@category) %>
-
-  <br><br>
+  | <%= link_to 'Add videos', edit_category_url(@category) %>
 
 <% end %>
+
+<br><br>
 
 <%= render 'shared/videos' %>

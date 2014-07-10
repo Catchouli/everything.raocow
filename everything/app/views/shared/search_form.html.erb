@@ -11,6 +11,41 @@
 
     <br>
 
+    <% if resource == "Video" %>
+
+      <!-- Categorisation filters -->
+
+      <% Category.cat_types.each do |c_t| %>
+
+        <%= label_tag c_t[0] + "_ids", capitalize(c_t[0]) + " filter", class: "category_type" %>
+
+        <% current_categories = Category.where(cat_type: Category.cat_types[c_t[0]]) %>
+
+        <%= select_tag c_t[0] + "_ids",
+                     options_from_collection_for_select(current_categories, :id, :name,
+                                                        current_categories),
+                     :multiple => true,
+                     :class => "multiselect" %>
+
+        <%= check_box_tag "filter_" + c_t[0], true %>
+
+        <br>
+      <% end %>
+
+      <!-- Date ranges -->
+
+<!--      <%= label_tag :start_date %>
+      <%= date_select :start_date, options = { order: [:year, :month, :day] } %>
+
+      <br>
+
+      <%= label_tag :end_date %>
+      <%= date_select :end_date, options = { order: [:year, :month, :day] } %>
+-->
+    <% end %>
+
+    <br>
+
     <%= submit_tag "Search", name: nil %>
 
   </form>

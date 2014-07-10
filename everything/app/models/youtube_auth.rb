@@ -6,7 +6,13 @@ class YoutubeAuth < ActiveRecord::Base
 
   def self.client
 
-    auth = YoutubeAuth.last
+    if Time.now - YoutubeAuth.first.updated_at > 30.minutes
+
+      YoutubeAuth.refresh
+
+    end
+
+    auth = YoutubeAuth.first
 
     YouTubeIt::OAuth2Client.new(client_access_token: auth.access_token,
                                 client_refresh_token: auth.refresh_token,
@@ -28,8 +34,10 @@ class YoutubeAuth < ActiveRecord::Base
 
     res = client.refresh_access_token!
 
-    auth.update_columns(access_token: client.access_token,
-                        refresh_token: res.refresh_token)
+    auth.update_attributes(access_token: client.access_token.token,
+                           refresh_token: res.refresh_token)
+
+    
   end
 
 end
