@@ -23,6 +23,7 @@ gem 'fitvidsjs_rails'
 gem 'faraday'
 gem 'searchkick'
 gem 'oauth2'
+gem 'google-api-client'
 
 gem 'devise'
 

@@ -1,26 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
+
+    <!-- Meta information about page -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- rails js and stylesheet tags -->
     <%= stylesheet_link_tag "application", media: "all",
                                            "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <%= include_gon %>
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-      <% end %>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
-      <div id="execution_time">
-        <%= execution_time_string(@start_time) if Rails.env.development? %>
+    <div id="gradient-top"></div>
+    <div id="bg-top"></div>
+    <div id="overall-container" class="container">
+      <span id="logo">
+        <%= image_tag("logo.png") %>
+      </span>
+      <div id="main-container">
+        <%= render 'layouts/sitebar' %>
+        <div id="inner-container">
+          <%= render 'layouts/navbar' %>
+          <%= render 'layouts/flash' %>
+          <%= yield %>
+        </div>
       </div>
+      <%= render 'layouts/footer' %>
     </div>
   </body>
 </html>
