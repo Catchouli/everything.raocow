@@ -92,8 +92,6 @@ class VideosController < ApplicationController
 
       else
 
-        flash[:random_video] = "<a href=\"#{random_videos_path}\">Another random video</a>".html_safe
-
         redirect_to video_url(Video.random.id)
 
       end
