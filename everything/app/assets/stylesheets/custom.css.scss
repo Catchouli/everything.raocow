@@ -17,12 +17,13 @@ $channel-info-height: 50px;
 
 html
 {
-  overflow-y: scroll;
+  background: #2B2B2B;
 }
 
 body
 {
-
+  background-color: transparent !important;
+  font-family: Verdana, Helvetica, Arial, sans-serif !important;
 }
 
 section
@@ -82,43 +83,175 @@ p
 }
 
 
-/* header */
+/* layout */
+
+#bg-top
+{
+  position: absolute;
+  top: 0px;
+
+  background: center no-repeat image-url('header.png');
+
+  width: 100%;
+  height: 147px;
+
+  z-index: 1;
+}
+
+#gradient-top
+{
+  position: absolute;
+  top: 0px;
+
+  width: 100%;
+  height: 110px;
+
+  background: rgb(18,18,18); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(18,18,18,1) 0%, rgba(43,43,43,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(18,18,18,1)), color-stop(100%,rgba(43,43,43,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(18,18,18,1) 0%,rgba(43,43,43,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(18,18,18,1) 0%,rgba(43,43,43,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(18,18,18,1) 0%,rgba(43,43,43,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(18,18,18,1) 0%,rgba(43,43,43,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#121212', endColorstr='#2b2b2b',GradientType=0 ); /* IE6-9 */
+}
 
 #logo
 {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
+  position: absolute;
+  top: 50px;
+  left: 50px;
 
-  &:hover
-  {
-    color: white;
-    text-decoration: none;
-  }
+  height: 147px;
+}
+
+#overall-container
+{
+  position: relative;
+}
+
+#main-container
+{
+  margin-top: 140px;
+
+  padding: 0;
+
+  border: 1px solid #6d6d6d;
+  border-radius: 8px;
+  background-color: #812b2b;
+}
+
+#sitebar
+{
+  width: 100%;
+  text-align: center;
+
+  margin: 0;
+}
+
+#sitebar > li
+{
+  padding: 9px 10px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+#sitebar > li > a:link,
+#sitebar > li > a:visited
+{
+  color: #aaaaaa;
+}
+
+#sitebar > li > a:hover,
+#sitebar > li > a:active
+{
+  color: #FFF;
+  text-decoration: none;
+}
+
+#inner-container
+{
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+
+  background: #FFFFFF;
+
+  margin: 4px;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.affiliates
+{
+  color: #5F6476;
+  text-align: center;
+  font-size: 11px;
+}
+
+.affiliates > a:link,
+.affiliates > a:visited
+{
+  color: #2F466A;
+}
+
+#forum-container
+{
+  position: relative;
+
+  border-radius: 8px;
+
+  background: #973328;
+}
+
+#forum-container-gradient
+{
+  position: absolute;
+  top: 0;
+
+  border-radius: inherit;
+
+  width: 100%;
+  height: 25px;
+
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+
+  background: #973328;
+  background: -moz-linear-gradient(top, rgba(173,71,60,1) 1%, rgba(168,69,59,1) 49%, rgba(151,51,40,1) 50%, rgba(151,51,40,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(173,71,60,1)), color-stop(49%,rgba(168,69,59,1)), color-stop(50%,rgba(151,51,40,1)), color-stop(100%,rgba(151,51,40,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(173,71,60,1) 1%,rgba(168,69,59,1) 49%,rgba(151,51,40,1) 50%,rgba(151,51,40,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(173,71,60,1) 1%,rgba(168,69,59,1) 49%,rgba(151,51,40,1) 50%,rgba(151,51,40,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(173,71,60,1) 1%,rgba(168,69,59,1) 49%,rgba(151,51,40,1) 50%,rgba(151,51,40,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(173,71,60,1) 1%,rgba(168,69,59,1) 49%,rgba(151,51,40,1) 50%,rgba(151,51,40,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ad473c', endColorstr='#973328',GradientType=0 ); /* IE6-9 */
+}
+
+#forum-container-inner
+{
+  position: relative;
+  z-index: 1;
 }
 
 /* footer */
 
 footer
 {
-  margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
   color: $gray-light;
 
   a
   {
     color: $gray;
+    margin-left: 10px;
 
     &:hover
     {
-      color: $gray-darker;
+      color: #FFF;
+      text-decoration: none;
     }
   }
 
@@ -292,6 +425,7 @@ input
   {
     display: inline-block;
     text-decoration: none;
+
     width: 500px;
 
     &:hover
