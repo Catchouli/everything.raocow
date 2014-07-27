@@ -2,7 +2,11 @@
 
 <h1>All channels</h1>
 
-<%= link_to 'Add channel', new_channel_path %>
+<% if user_signed_in? && current_user.admin? %>
+
+  <%= link_to 'Add channel', new_channel_path %>
+
+<% end %>
 
 <br><br>
 
