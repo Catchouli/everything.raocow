@@ -1,12 +1,12 @@
-<% provide(:title, "All channels") %>
+<% provide(:title, "all channels") %>
 
 <h1><%= @channel.name %>'s videos</h1>
 
-<%= link_to 'Random video', videos_random_channel_path(@channel) %>
+<%= link_to 'random video', videos_random_channel_path(@channel) %>
 
 <% if user_signed_in? && current_user.admin? %>
 
-  | <%= link_to 'Edit channel', edit_channel_path(@channel) %>
+  | <%= link_to 'edit channel', edit_channel_path(@channel) %>
 
 <% end %>
 

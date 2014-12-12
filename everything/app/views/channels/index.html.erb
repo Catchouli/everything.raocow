@@ -1,10 +1,10 @@
-<% provide(:title, "All channels") %>
+<% provide(:title, "all channels") %>
 
-<h1>All channels</h1>
+<h1>all channels</h1>
 
 <% if user_signed_in? && current_user.admin? %>
 
-  <%= link_to 'Add channel', new_channel_path %>
+  <%= link_to 'add channel', new_channel_path %>
 
 <% end %>
 

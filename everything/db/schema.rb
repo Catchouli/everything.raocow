@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709030454) do
+ActiveRecord::Schema.define(version: 20140727175146) do
 
   create_table "categories", force: true do |t|
-    t.integer "cat_type", default: 0, null: false
-    t.string  "name",                 null: false
+    t.integer  "cat_type",       default: 0, null: false
+    t.string   "name",                       null: false
+    t.datetime "last_published"
   end
 
   add_index "categories", ["cat_type", "name"], name: "index_categories_on_cat_type_and_name", unique: true

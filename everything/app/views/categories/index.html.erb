@@ -1,6 +1,6 @@
-<% provide(:title, "All #{@cat_type}") %>
+<% provide(:title, "all #{@cat_type}") %>
 
-<h1>All <%= @cat_type.pluralize(0) %></h1>
+<h1>all <%= @cat_type %></h1>
 
 <%= render 'shared/list_of_links', objects: @categories, options: { info: [:name], thumbnails: true } %>
 
@@ -8,6 +8,6 @@
 
   <br><br>
 
-  <%= link_to "Add #{@cat_type}", send("new_#{@cat_type}_path") %>
+  <%= link_to "add #{@cat_type}", send("new_#{@cat_type}_path") %>
 
 <% end %>

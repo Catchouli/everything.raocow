@@ -23,12 +23,12 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.where(cat_type: Category.cat_types[cat_type]).
-                           paginate(page: params[:page])
+                           paginate(page: params[:page], per_page: params[:per_page]).order('last_published DESC')
   end
 
   def show
     @videos = @category.videos.paginate(page: params[:page],
-                                       per_page: 20).order('published_at DESC')
+                                       per_page: params[:per_page]).order('published_at ASC')
   end
 
   def new
@@ -64,9 +64,15 @@ class CategoriesController < ApplicationController
 
     Categorisation.create(videos.map { |v| { category_id: @category.id, video_id: v } })
 
-    flash[:success] = "Successfully updated #{cat_type} #{@category.name}"
+    # Update params
+    p = params.permit(:name)
 
-    redirect_to category_path(@category)
+    if @category.update_attributes(p)
+      flash[:success] = "Successfully updated #{cat_type} #{@category.name}"
+      redirect_to category_path(@category)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -88,7 +94,7 @@ class CategoriesController < ApplicationController
 
     if params.has_key?(:query)
 
-      @results = Category.search(params[:query], where: { cat_type: cat_type }, page: params[:page], per_page: 30)
+      @results = Category.search(params[:query], where: { cat_type: cat_type }, page: params[:page], per_page: params[:per_page])
 
       render 'shared/search_results.html.erb', locals: { resource: capitalize(cat_type), options: { info: [:name], thumbnails: true } }
 
@@ -133,7 +139,7 @@ class CategoriesController < ApplicationController
     end
 
     def cat_type
-      %r{^/(.*?)(/.*)?$}.match(request.original_fullpath)[1].singularize
+      %r{/(\w*)\b}.match(request.original_fullpath)[1].singularize
     end
 
     # route function overrides

@@ -1,12 +1,18 @@
-<% provide(:title, "Editing #{@cat_type} #{@category.name}") %>
+<% provide(:title, "editing #{@cat_type} #{@category.name}") %>
 
-<h1>Editing <%= @cat_type %> <%= @category.name %></h1>
+<h1>editing <%= @cat_type %> <%= @category.name %></h1>
 
 <div class="center">
 
   <%= form_for @category, as: :category, url: category_url(@category), method: :patch do |f| %>
 
     <%= render 'shared/error_messages', object: @category %>
+
+    <div>
+      <%= f.label :name %>
+      <br>
+      <%= f.text_field :name %>
+    </div>
 
     <%= f.label :select_videos %>
 
@@ -16,6 +22,8 @@
                                                      {},
                  :multiple => true,
                  :class => "multiselect" %>
+
+    <br>
 
     <%= f.submit %>
 

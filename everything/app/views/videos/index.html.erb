@@ -1,5 +1,5 @@
-<% provide(:title, "Recently uploaded videos") %>
+<% provide(:title, "recently uploaded videos") %>
 
-<h1>Recently uploaded videos</h1>
+<h1>recently uploaded videos</h1>
 
 <%= render 'shared/list_of_links', objects: @videos, options: { info: [:name, :time, :channel_name], thumbnails: true } %>

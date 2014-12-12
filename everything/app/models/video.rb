@@ -24,6 +24,10 @@ class Video < ActiveRecord::Base
     "#{self.title}"
   end
 
+  def description
+    YoutubeAuth.client.video_by(self.video_id).description
+  end
+
   def time
     "#{time_ago_in_words(self.published_at)} ago"
   end

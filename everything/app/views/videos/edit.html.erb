@@ -1,12 +1,12 @@
-<% provide(:title, "Editing video #{@video.title}") %>
+<% provide(:title, "editing video #{@video.title}") %>
 
-<h1>Editing video <%= @video.title %></h1>
+<h1>editing video <%= @video.title %></h1>
 
 <div class="center">
 
   <% Category.cat_types.each do |c_t| %>
 
-    <%= render 'category_edit', categories: Category.where(cat_type: c_t[1]), video: @video %>
+      <%= render 'category_edit', categories: Category.where(cat_type: c_t[1]), video: @video %>
 
   <% end %>
 

@@ -1,12 +1,12 @@
-<% provide(:title, "All #{@cat_type}") %>
+<% provide(:title, "all #{@cat_type}") %>
 
 <h1><%= @category.name %> videos</h1>
 
-<%= link_to 'Random video', videos_random_category_path(@category) %>
+<%= link_to 'random video', videos_random_category_path(@category) %>
 
 <% if user_signed_in? %>
 
-  | <%= link_to 'Add videos', edit_category_url(@category) %>
+  | <%= link_to 'add videos', edit_category_url(@category) %>
 
 <% end %>
 
