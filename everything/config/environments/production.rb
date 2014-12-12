@@ -77,4 +77,7 @@ Everything::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Make sure the port is correct (80)
+  config.default_url_options = { port: 80 }
 end
