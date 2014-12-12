@@ -1,6 +1,4 @@
 class Video < ActiveRecord::Base
-  searchkick
-
   include ActionView::Helpers::DateHelper
 
   belongs_to :channel
@@ -38,5 +36,9 @@ class Video < ActiveRecord::Base
 
   def self.random
     Video.offset(rand(Video.count)).limit(1)[0]
+  end
+
+  def category_count
+    self.categories.count
   end
 end

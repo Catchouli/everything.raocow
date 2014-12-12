@@ -1,5 +1,11 @@
 <% provide(:title, @video.title) %>
 
+<% if user_signed_in? %>
+
+  <%= link_to "edit categories", edit_video_path(@video) %>
+
+<% end %>
+
 <div class="center">
   <div id="video">
     <!-- Video title -->
@@ -7,11 +13,36 @@
     <br>
 
     <!-- Video player -->
+    <%
+      @playlist = ""
+      @index = 0
+
+      if @related_videos.length then
+        @playlist = @related_videos.map{ |v| v.video_id }.join(',')
+        @index = @related_videos.index(@video)
+      end
+
+      @url = "http://www.youtube.com/embed/#{@video.video_id}?playlist=#{@playlist}&index=#{@index}"
+    %>
+
     <iframe id="ytplayer" type="text/html"
             width="640" height="390"
-            src="http://www.youtube.com/embed/<%= @video.video_id %>"
+            src="<%= @url %>"
             frameborder="0"
             allowfullscreen="true"></iframe>
+    <br>
+
+    <!-- Categories -->
+    <div style="text-align: left;">
+      Categories:
+        <%= @video.categories.map { |c|
+          "<a href=\"
+            #{series_url(c.id)}
+          \">#{c.name}</a>" }
+            .join(' | ').html_safe
+        %>
+    </div>
+
     <br>
 
     <!-- Video description -->
@@ -21,8 +52,3 @@
 
 <br>
 
-<% if user_signed_in? %>
-
-  <%= link_to "edit categories", edit_video_path(@video) %>
-
-<% end %>

@@ -65,7 +65,7 @@ class CategoriesController < ApplicationController
     Categorisation.create(videos.map { |v| { category_id: @category.id, video_id: v } })
 
     # Update params
-    p = params.permit(:name)
+    p = params.require(:category).permit(:name)
 
     if @category.update_attributes(p)
       flash[:success] = "Successfully updated #{cat_type} #{@category.name}"

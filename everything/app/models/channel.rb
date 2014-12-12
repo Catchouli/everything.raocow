@@ -59,9 +59,9 @@ class Channel < ActiveRecord::Base
           self.videos.new(title: v.title,
                           video_id: v.unique_id,
                           published_at: v.published_at)
-        end
 
-      self.save
+          self.save
+        end
     else
       logger.warn "update called on uninitialised channel"
     end

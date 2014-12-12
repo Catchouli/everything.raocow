@@ -9,6 +9,12 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find_by_id(params[:id])
+    
+    @related_videos = []
+
+    @video.categories.each do |c|
+      @related_videos += c.videos.all.to_a
+    end
 
     if @video == nil
       flash[:error] = "Invalid video id #{params[:id]}"

@@ -24,6 +24,8 @@ gem 'faraday'
 gem 'searchkick'
 gem 'oauth2'
 gem 'google-api-client'
+gem 'unicorn'
+gem 'kgio'
 
 gem 'devise'
 
