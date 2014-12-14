@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   include UserHelper
 
   def default_url_options(options = nil)
-    @port = Rails::Server.new.options[:Port]
+    @port = 3000
 
     @port = 80 if Rails.env.production?
 
