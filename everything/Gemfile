@@ -21,12 +21,11 @@ gem 'bootstrap-will_paginate'
 gem 'gon'
 gem 'paperclip'
 gem 'fitvidsjs_rails'
-gem 'faraday'
-gem 'searchkick'
 gem 'oauth2'
 gem 'google-api-client'
 gem 'unicorn'
 gem 'kgio'
+gem 'acts_as_indexed'
 
 gem 'devise'
 
