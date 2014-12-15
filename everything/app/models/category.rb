@@ -1,6 +1,4 @@
 class Category < ActiveRecord::Base
-  searchkick
-
   validates :name, presence: true, uniqueness: true
 
   has_many :categorisations, dependent: :destroy
