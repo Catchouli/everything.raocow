@@ -29,7 +29,7 @@ class VideosController < ApplicationController
       flash[:error] = "Invalid video id #{params[:id]}"
       redirect_to videos_path 
     else
-      @categories = Category.all
+      @categories = Category.order('last_published DESC')
     end
   end
 
@@ -76,13 +76,23 @@ class VideosController < ApplicationController
 
         category = Category.find_by_id(params[:id])
 
-        cat_videos = category.videos
+        if category.videos.count == 0
 
-        random_video_path = "/" + category.cat_type.pluralize(0) + "/" + category.id.to_s + "/videos/random"
+          flash[:error] = 'No videos in category'
 
-        flash[:random_video] = "<a href=\"#{random_video_path}\">Another random video from #{category.cat_type} #{category.name}</a>".html_safe
+          redirect_to request.referer
 
-        redirect_to video_url(cat_videos[rand(cat_videos.count)])
+        else
+
+          cat_videos = category.videos
+
+          random_video_path = "/" + category.cat_type.pluralize(0) + "/" + category.id.to_s + "/videos/random"
+
+          flash[:random_video] = "<a href=\"#{random_video_path}\">Another random video from #{category.cat_type} #{category.name}</a>".html_safe
+
+          redirect_to video_url(cat_videos[rand(cat_videos.count)])
+
+        end
 
       elsif params.has_key?(:channel_search) && params.has_key?(:id)
 
