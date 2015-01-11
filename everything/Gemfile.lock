@@ -79,14 +79,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    elasticsearch (1.0.6)
-      elasticsearch-api (= 1.0.6)
-      elasticsearch-transport (= 1.0.6)
-    elasticsearch-api (1.0.6)
-      multi_json
-    elasticsearch-transport (1.0.6)
-      faraday
-      multi_json
     erubis (2.7.0)
     excon (0.42.1)
     execjs (2.2.2)
@@ -111,7 +103,6 @@ GEM
       retriable (>= 1.4)
       signet (>= 0.5.0)
       uuidtools (>= 2.1.0)
-    hashie (3.3.2)
     hike (1.2.3)
     httparty (0.13.3)
       json (~> 1.8)
@@ -137,7 +128,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     mini_portile (0.6.1)
-    minitest (5.4.3)
+    minitest (5.5.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -195,10 +186,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    searchkick (0.8.5)
-      activemodel
-      elasticsearch (>= 1)
-      hashie
     signet (0.6.0)
       addressable (~> 2.3)
       extlib (~> 0.9)
@@ -246,7 +233,6 @@ DEPENDENCIES
   bootstrap-will_paginate
   coffee-rails (~> 4.0.0)
   devise
-  faraday
   fitvidsjs_rails
   gon
   google-api-client
@@ -263,7 +249,6 @@ DEPENDENCIES
   rufus-scheduler
   sass-rails (~> 4.0.2)
   sdoc
-  searchkick
   sqlite3
   therubyracer
   turbolinks

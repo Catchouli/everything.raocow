@@ -27,8 +27,11 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @videos = @category.videos.paginate(page: params[:page],
-                                       per_page: params[:per_page]).order('published_at ASC')
+    @videos = Video
+      .joins('INNER JOIN categorisations ON videos.id = categorisations.video_id')
+      .where('categorisations.category_id' => params[:id])
+      .order(:published_at => :desc)
+      .paginate(page: params[:page], per_page: params[:per_page])
   end
 
   def new

@@ -22,5 +22,8 @@ module Everything
 
     # Auto load lib files
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # Force encoding to utf-8
+    config.encoding = "utf-8"
   end
 end

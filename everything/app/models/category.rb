@@ -1,6 +1,4 @@
 class Category < ActiveRecord::Base
-  searchkick
-
   validates :name, presence: true, uniqueness: true
 
   has_many :categorisations, dependent: :destroy
@@ -27,7 +25,11 @@ class Category < ActiveRecord::Base
     if videos.count == 0
       self.last_published = Time.at(0)
     else
-      self.last_published = videos.order(published_at: :asc).first.published_at
+      self.last_published = Video
+        .joins('INNER JOIN categorisations ON videos.id = categorisations.video_id')
+        .where('categorisations.category_id' => self.id)
+        .order(:published_at => :desc)
+          .first.published_at
     end
 
     self.save
