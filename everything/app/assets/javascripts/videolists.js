@@ -21,10 +21,8 @@ videos.each(function()
     thumb.height(thumb.width() * (9.0/16.0));
   }
   
-  // Do it now
-  resizeThumb();
-  
   // Set up event
+  $(document).on('load page:change', resizeThumb);
   $(window).resize(resizeThumb);
 });
 

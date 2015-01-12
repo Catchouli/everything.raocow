@@ -92,7 +92,7 @@ html
 }
 
 /* Navigation */
-.nav ul
+.header-nav ul
 {
   overflow: hidden;
   border: solid 1px #ccc;
@@ -101,14 +101,14 @@ html
   box-shadow: 3px 3px 10px #888;
 }
 
-.nav .top
+.header-nav .top
 {
   padding-bottom: 0.5em;
   color: #FFF;
   font-size: 130%;
 }
 
-.nav a
+.header-nav a
 {
   padding: 1em;
   display: block;
@@ -116,13 +116,13 @@ html
   text-decoration: none;
 }
 
-.nav a:hover
+.header-nav a:hover
 {
   color: #fb6716;
   text-decoration: none;
 }
 
-.nav a:active
+.header-nav a:active
 {
   color: #a73;
   text-decoration: none;

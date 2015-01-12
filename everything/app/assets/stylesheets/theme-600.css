@@ -2,20 +2,20 @@
 {
   /* Header */
   /* Navigation links */
-  .nav a
+  .header-nav a
   {
     color: #FFF;
     text-decoration: none;
     font-size: 125%;
   }
 
-  .nav a:hover
+  .header-nav a:hover
   {
     color: #fb6716;
     text-decoration: none;
   }
 
-  .nav a:active
+  .header-nav a:active
   {
     color: #a73;
     text-decoration: none;

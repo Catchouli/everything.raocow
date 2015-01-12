@@ -1,13 +1,21 @@
 <% provide(:title, "all channels") %>
 
-<h1><%= @channel.name %>'s videos</h1>
+<div id="wrapper">
 
-<%= link_to 'random video', videos_random_channel_path(@channel) %>
+  <div class="page-head">
 
-<% if user_signed_in? && current_user.admin? %>
+    <h1><%= @channel.name %>'s videos</h1>
 
-  | <%= link_to 'edit channel', edit_channel_path(@channel) %>
+    <%= link_to 'random video', videos_random_channel_path(@channel) %>
 
-<% end %>
+    <% if user_signed_in? && current_user.admin? %>
 
-<%= render 'shared/videos' %>
+      | <%= link_to 'edit channel', edit_channel_path(@channel) %>
+
+    <% end %>
+
+  </div>
+
+  <%= render 'shared/videos' %>
+
+</div>

@@ -1,13 +1,21 @@
 <% provide(:title, "editing video #{@video.title}") %>
 
-<h1>editing video <%= @video.title %></h1>
+<div id="wrapper">
 
-<div class="center">
+  <div class="center">
 
-  <% Category.cat_types.each do |c_t| %>
+    <h1>editing video <%= @video.title %></h1>
 
-      <%= render 'category_edit', categories: Category.where(cat_type: c_t[1]), video: @video %>
+    <br><br>
 
-  <% end %>
+    <% Category.cat_types.each do |c_t| %>
+
+        <%= render 'category_edit', categories: Category.where(cat_type: c_t[1]), video: @video %>
+
+    <% end %>
+
+    <br><br>
+
+  </div>
 
 </div>

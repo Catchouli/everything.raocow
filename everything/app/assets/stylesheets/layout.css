@@ -24,7 +24,7 @@ h2
   word-wrap: break-word;
 }
 
-.nav ul
+.header-nav ul
 {
   z-index: 1;
   width: 10em;
@@ -34,14 +34,14 @@ h2
 
 @media (max-width: 600px)
 {
-  .nav
+  .header-nav
   {
     position: relative;
     width: 4em;
     margin: 0 auto;
   }
 
-  .nav:hover ul
+  .header-nav:hover ul
   {
     display: block;
     position: absolute;
@@ -49,7 +49,7 @@ h2
   }
 }
 
-.nav span.top
+.header-nav span.top
 {
   display: block;
   

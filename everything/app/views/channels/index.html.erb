@@ -1,13 +1,21 @@
 <% provide(:title, "all channels") %>
 
-<h1>all channels</h1>
+<div id="wrapper">
 
-<% if user_signed_in? && current_user.admin? %>
+  <div class="page-head">
 
-  <%= link_to 'add channel', new_channel_path %>
+    <h1>all channels</h1>
 
-<% end %>
+    <% if user_signed_in? && current_user.admin? %>
 
-<br><br>
+      <%= link_to 'add channel', new_channel_path %>
 
-<%= render 'shared/list_of_links', objects: @channels, options: { info: [:name], thumbnails: true } %>
+    <% end %>
+
+  </div>
+
+  <br><br>
+
+  <%= render 'shared/list_of_links', objects: @channels, options: { info: [:name], thumbnails: true } %>
+
+</div>

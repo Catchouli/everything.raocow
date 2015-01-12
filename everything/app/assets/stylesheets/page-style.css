@@ -1,0 +1,9 @@
+.page-head
+{
+  margin-left: 1em;
+}
+
+.page-head h1
+{
+  margin-left: 0 !important;
+}

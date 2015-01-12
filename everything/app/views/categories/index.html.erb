@@ -2,15 +2,17 @@
 
 <div id="wrapper">
 
-  <h1>all <%= @cat_type %></h1>
+  <div class="page-head">
 
-  <% if user_signed_in? %>
+    <h1>all <%= @cat_type %></h1>
 
-    <br><br>
+    <% if user_signed_in? %>
 
-    <%= link_to "add #{@cat_type}", send("new_#{@cat_type}_path") %>
+      <%= link_to "add #{@cat_type}", send("new_#{@cat_type}_path") %>
 
-  <% end %>
+    <% end %>
+
+  </div>
 
   <%= render 'shared/list_of_links', objects: @categories, options: { info: [:name], thumbnails: true } %>
 

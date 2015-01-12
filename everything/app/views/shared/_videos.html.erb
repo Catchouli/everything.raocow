@@ -4,12 +4,4 @@
 
 <% end %>
 
-<div class="center">
-  <%= will_paginate @videos %>
-</div>
-
 <%= render 'shared/list_of_links', objects: @videos, options: { info: [:name], thumbnails: true } %>
-
-<div class="center">
-  <%= will_paginate @videos %>
-</div>

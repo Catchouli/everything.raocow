@@ -2,15 +2,19 @@
 
 <div id="wrapper">
 
-  <h1><%= @category.name %> videos</h1>
+  <div class="page-head">
 
-  <%= link_to 'random video', videos_random_category_path(@category) %>
+    <h1><%= @category.name %> videos</h1>
 
-  <% if user_signed_in? %>
+    <%= link_to 'random video', videos_random_category_path(@category) %>
 
-    | <%= link_to 'add videos/edit category', edit_category_url(@category) %>
+    <% if user_signed_in? %>
 
-  <% end %>
+      | <%= link_to 'add videos/edit category', edit_category_url(@category) %>
+
+    <% end %>
+
+  </div>
 
   <br><br>
 

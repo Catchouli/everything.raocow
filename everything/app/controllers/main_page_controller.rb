@@ -2,6 +2,8 @@ class MainPageController < ApplicationController
 
   def index
 
+    @hide_navbar = true
+
     # Get recent videos - we get this locally instead of using the youtube
     # api in case it gets videos we don't have cached yet
     recentVids = Video.order(:published_at => :desc).first 8

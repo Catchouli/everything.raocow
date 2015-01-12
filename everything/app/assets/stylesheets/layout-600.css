@@ -15,7 +15,7 @@
     max-width: 1000px !important;
   }
 
-  .nav ul
+  .header-nav ul
   {
     border: none !important;
 
@@ -26,24 +26,24 @@
     box-shadow: none !important;
   }
 
-  .nav ul,
-  .nav ul li
+  .header-nav ul,
+  .header-nav ul li
   {
     /* Make navbar expand when page is resized */
     display: inline-block !important;
   }
 
-  .nav ul
+  .header-nav ul
   {
     background-color: transparent !important;
   }
 
-  .nav ul li:hover a
+  .header-nav ul li:hover a
   {
     background-color: transparent !important;
   }
 
-  .nav span.top
+  .header-nav span.top
   {
     /* Hide "Menu" element when menu is laid out flat */
     display: none !important;
