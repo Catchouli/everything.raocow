@@ -1,0 +1,5 @@
+<% provide(:title, "uncategorised videos") %>
+
+<h1>recently uploaded videos</h1>
+
+<%= render 'shared/list_of_links', objects: @videos, options: { info: [:name, :time, :channel_name], thumbnails: true } %>

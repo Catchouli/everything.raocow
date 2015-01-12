@@ -15,7 +15,7 @@ class Video < ActiveRecord::Base
   end
 
   def thumbnail
-    "http://i1.ytimg.com/vi/#{self.video_id}/default.jpg"    
+    "http://i1.ytimg.com/vi/#{self.video_id}/mqdefault.jpg"    
   end
 
   def name

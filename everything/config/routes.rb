@@ -1,5 +1,5 @@
 Everything::Application.routes.draw do
-  root 'videos#index'
+  root 'main_page#index'
 
   devise_for :users
 

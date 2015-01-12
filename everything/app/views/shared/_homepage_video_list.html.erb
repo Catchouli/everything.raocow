@@ -1,0 +1,38 @@
+<div
+  <% if defined? id %>
+    id="<%= id %>"
+  <% end %>
+  >
+
+  <div class="video-list">
+    <% if defined? heading %>
+      <h2><%= heading %></h2>
+    <% end %>
+
+    <% videos.each do |v| %>
+
+    <div class="item" data-video-id="<%= v[:video_id] %>">
+      <a href="<%= video_url(v[:internal_id]) %>">
+        <div class="thumbnail">
+        </div>
+        <div class="info wrapbroken">
+          <div class="video-name"><%= v[:title] %></div>
+          <div class="video-views"><%= number_with_delimiter(v[:views]) %> views</div>
+        </div>
+        <div style="clear:both;"></div>
+      </a>
+    </div>
+
+    <% end %>
+
+    <div style="clear:both;"></div>
+  </div>
+</div>
+
+<% if defined? more %>
+  <div style="text-align: right;">
+    <a href="<%= more %>">more...</a>
+  </div>
+<% end %>
+
+

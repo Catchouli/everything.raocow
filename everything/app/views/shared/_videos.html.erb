@@ -8,43 +8,7 @@
   <%= will_paginate @videos %>
 </div>
 
-<ul class="list_of_links">
-
-  <% @videos.each do |v| %>
-
-    <a href="<%= video_url(v) %>"><li>
-
-      <img src="<%= v.thumbnail %>">
-
-      <span>
-
-      <% options[:info].each do |opt| %>
-
-        <% case opt %>
-          <% when :title %>
-            <%= v.title %>  
-
-          <% when :time %>
-            <%= time_ago_in_words(v.published_at) %> ago
-
-          <% when :channel %>
-            <%= v.channel.name %>
-
-        <% end %>
-
-        <br>
-
-      <% end %>
-
-      </span>
-
-    </li></a>
-
-  <% end %>
-
-</ul>
-
-<br>
+<%= render 'shared/list_of_links', objects: @videos, options: { info: [:name], thumbnails: true } %>
 
 <div class="center">
   <%= will_paginate @videos %>

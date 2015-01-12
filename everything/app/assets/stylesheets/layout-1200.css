@@ -1,0 +1,53 @@
+@media (min-width: 1200px)
+{
+  #header
+  {
+    /* Max out at 1200px wide and centre in headerwrapper */
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  #wrapper
+  {
+    max-width: 1200px;
+  }
+
+  /* Navbar and search spacing on big screens */
+  #logo
+  {
+    float: left;
+    padding: 3em !important;
+  }
+
+  #navbar
+  {
+    float: left;
+    padding-top: 3.5em !important;
+  }
+
+  #search
+  {
+    float: right;
+    text-align: right;
+    padding-top: 4.5em !important;
+  }
+
+  /* Homepage video */
+  #videowrapper
+  {
+    margin: 0 auto;
+  }
+
+  #footer
+  {
+    /* Max out at 1200px wide and centre in footerwrapper */
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .video-list .item
+  {
+    width: 23%;
+    float: left;
+  }
+}

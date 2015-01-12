@@ -1,32 +1,40 @@
 <% provide(:title, "Editing #{@cat_type} #{@category.name}") %>
 
-<h1>Editing <%= @cat_type %> <%= @category.name %></h1>
+<div id="wrapper">
 
-<div class="center">
+  <div class="center">
 
-  <%= form_for @category, as: :category, url: category_url(@category), method: :patch do |f| %>
+    <h1>Editing <%= @cat_type %> <%= @category.name %></h1>
 
-    <%= render 'shared/error_messages', object: @category %>
+    <%= form_for @category, as: :category, url: category_url(@category), method: :patch do |f| %>
 
-    <div>
-      <%= f.label :name %>
+      <%= render 'shared/error_messages', object: @category %>
+
+      <div>
+        <%= f.label :name %>
+        <br>
+        <%= f.text_field :name %>
+      </div>
+
       <br>
-      <%= f.text_field :name %>
-    </div>
 
-    <%= f.label :select_videos %>
+      <%= f.label :select_videos %>
 
-    <%= f.select :video_ids,
-                 options_from_collection_for_select(@videos, :id, :title,
-                                                     @category.videos.map { |c| c.id }),
-                                                     {},
-                 :multiple => true,
-                 :class => "multiselect" %>
+      <br>
 
-    <br>
+      <%= f.select :video_ids,
+                   options_from_collection_for_select(@videos, :id, :title,
+                                                       @category.videos.map { |c| c.id }),
+                                                       {},
+                   :multiple => true,
+                   :class => "multiselect" %>
 
-    <%= f.submit %>
+      <br><br>
 
-  <% end %>
+      <%= f.submit %>
+
+    <% end %>
+
+  </div>
 
 </div>

@@ -1,0 +1,31 @@
+@media (min-width: 600px)
+{
+  /* Header */
+  /* Navigation links */
+  .nav a
+  {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 125%;
+  }
+
+  .nav a:hover
+  {
+    color: #fb6716;
+    text-decoration: none;
+  }
+
+  .nav a:active
+  {
+    color: #a73;
+    text-decoration: none;
+  }
+
+  /* Video applet */
+  /* Show home page video applet on wider screens */
+  #videowrapper
+  {
+    background: #414141 url('/assets/video-back.png') repeat-x;
+    border-top: solid 1px #2b2b2b;
+  }
+}

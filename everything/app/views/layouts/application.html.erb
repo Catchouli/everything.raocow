@@ -1,35 +1,40 @@
 <!doctype html>
 <html>
-  <head>
-    <title><%= full_title(yield(:title)) %></title>
+<head>
 
-    <!-- Meta information about page -->
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Metadata -->
+  <title><%= full_title(yield(:title)) %></title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  
+  <!-- Stylesheets -->
+  <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+ 
+  <%= stylesheet_link_tag "application", media: "all",
+                                         "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
 
-    <!-- rails js and stylesheet tags -->
-    <%= stylesheet_link_tag "application", media: "all",
-                                           "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
-    <%= render 'layouts/shim' %>
-  </head>
-  <body>
-    <div id="gradient-top"></div>
-    <div id="bg-top"></div>
-    <div id="overall-container" class="container">
-      <span id="logo">
-        <%= image_tag("logo.png") %>
-      </span>
-      <div id="main-container">
-        <%= render 'layouts/sitebar' %>
-        <div id="inner-container">
-          <%= render 'layouts/navbar' %>
-          <%= render 'layouts/flash' %>
-          <%= yield %>
-        </div>
-      </div>
-      <%= render 'layouts/footer' %>
-    </div>
-  </body>
+  <%= render 'layouts/shim' %>
+
+</head>
+<body>
+
+  <%= render 'layouts/header' %>
+
+  <%= render 'layouts/flash' %>
+
+  <%= render 'layouts/navbar' %>
+
+  <%= yield %>
+
+  <div id="footerspacer"></div>
+
+  <%= render 'layouts/footer' %>
+
+  <!-- rails application js -->
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+</body>
 </html>

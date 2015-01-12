@@ -1,0 +1,137 @@
+/* Fonts */
+.serif
+{
+  font-family: 'Droid Serif', Georgia, Times, serif;
+}
+ 
+html
+{
+  font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+}
+
+h1
+{
+  font-size: 200%;
+  line-height: 150%;
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+h2
+{
+  font-size: 150%;
+  line-height: 125%;
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+p, #footer
+{
+  font-size: 100%;
+  line-height: 150%;
+}
+
+#footer
+{
+  color: #FFF;
+}
+
+.center
+{
+  text-align: center;
+}
+
+/* Page background (cream dust) */
+html
+{
+  background-image: url('/assets/cream_dust.png');
+}
+
+/* Header */
+#headerwrapper
+{
+  background: #85a440 url('/assets/header-back.png') repeat-x;
+  box-shadow: 0px 5px 5px rgba(1, 1, 1, 0.15);
+  
+  /* Make box shadow appear above video-back, but below video */
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+#footerwrapper
+{
+  background: #85a440 url('/assets/footer-back.png') repeat-x;
+  background-position: center;
+  box-shadow: 0px -3px 3px #AAA;
+}
+
+#homevideo
+{
+  /* Make headerwrapper box shadow appear above video-back, but below video */
+  position: relative;
+  z-index: 1;
+}
+
+/* Video list item border/background */
+.video-list  > .item 
+{
+  padding: 1.5%;
+  border: solid 1px #CCC;
+  background-image: url('/assets/striped_lens.png');
+  text-decoration: none;
+  color: #000;
+}
+
+/* Border around videos in lists */
+.video-list  > .item:hover
+{
+  background-image: url('/assets/striped_lens_dimmed.png');
+}
+
+/* Navigation */
+.nav ul
+{
+  overflow: hidden;
+  border: solid 1px #ccc;
+  background-color: #FFF;
+  border-radius: 4px;
+  box-shadow: 3px 3px 10px #888;
+}
+
+.nav .top
+{
+  padding-bottom: 0.5em;
+  color: #FFF;
+  font-size: 130%;
+}
+
+.nav a
+{
+  padding: 1em;
+  display: block;
+  color: #000;
+  text-decoration: none;
+}
+
+.nav a:hover
+{
+  color: #fb6716;
+  text-decoration: none;
+}
+
+.nav a:active
+{
+  color: #a73;
+  text-decoration: none;
+}
+
+/* Search box */
+#search input 
+{
+  font-size: 120%;
+  border: solid 1px #a8c764;
+  box-shadow: 3px 3px 3px #4e6c1c;
+}

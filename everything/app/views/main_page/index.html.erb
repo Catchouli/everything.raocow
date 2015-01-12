@@ -1,0 +1,25 @@
+<div id="videowrapper">
+  <iframe
+    id="homevideo"
+    class="videoapplet"
+    src="https://www.youtube.com/embed?listType=user_uploads&list=raocow"
+    frameborder="0"
+    allowfullscreen></iframe>
+</div>
+
+<div id="wrapper">
+
+  <%= render 'shared/homepage_video_list',
+        videos: @recent,
+        id: 'recent',
+        heading: 'Recent videos',
+        more: videos_url %>
+
+  <%= render 'shared/homepage_video_list',
+        videos: @popular,
+        id: 'popular',
+        heading: 'Popular videos',
+        more: 'https://www.youtube.com/user/raocow/videos?sort=p' %>
+
+  <div class="spacer" style="height: 2em"></div>    
+</div>

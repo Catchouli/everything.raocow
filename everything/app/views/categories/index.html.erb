@@ -1,14 +1,17 @@
 <% provide(:title, "all #{@cat_type}") %>
 
-<h1>all <%= @cat_type %></h1>
+<div id="wrapper">
 
-<% if user_signed_in? %>
+  <h1>all <%= @cat_type %></h1>
 
-  <br><br>
+  <% if user_signed_in? %>
 
-  <%= link_to "add #{@cat_type}", send("new_#{@cat_type}_path") %>
+    <br><br>
 
-<% end %>
+    <%= link_to "add #{@cat_type}", send("new_#{@cat_type}_path") %>
 
-<%= render 'shared/list_of_links', objects: @categories, options: { info: [:name], thumbnails: true } %>
+  <% end %>
 
+  <%= render 'shared/list_of_links', objects: @categories, options: { info: [:name], thumbnails: true } %>
+
+</div>

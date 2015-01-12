@@ -8,19 +8,21 @@
 <%= will_paginate objects %>
 </div>
 
-<ul class="list_of_links">
+<div class="video-list">
 
   <% objects.each do |object| %>
 
-    <a href="<%= polymorphic_path(object) %>"><li>
+<div class="item">
+
+    <a href="<%= polymorphic_path(object) %>">
 
       <% if options[:thumbnails] %>
 
-        <img src="<%= object.thumbnail %>">
+        <div class="thumbnail" style="background-image: url('<%= object.thumbnail %>');"></div>
 
       <% end %>
 
-      <span>
+      <div class="info wrapbroken">
 
       <% options[:info].each do |opt| %>
 
@@ -30,13 +32,19 @@
 
       <% end %>
 
-      </span>
+      </div>
 
-    </li></a>
+    </a>
+
+<div style="clear: both;"></div>
+
+</div>
 
   <% end %>
 
-</ul>
+</div>
+
+<div style="clear: both;"></div>
 
 <br>
 

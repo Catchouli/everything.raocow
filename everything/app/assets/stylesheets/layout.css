@@ -1,0 +1,142 @@
+/* Default layout (mobile) */
+h1
+{
+  font-size: 200%;
+}
+
+h2
+{
+  font-size: 150%;
+}
+
+/* Differing font sizes for different screen sizes */
+@media all and (min-width:400px)
+{
+    body { font-size: 120%; }
+}
+@media all and (min-width:600px)
+{
+    body { font-size: 140%; }
+}
+
+.wrapbroken
+{  
+  word-wrap: break-word;
+}
+
+.nav ul
+{
+  z-index: 1;
+  width: 10em;
+  margin: 0 auto;
+  display: none;
+}
+
+@media (max-width: 600px)
+{
+  .nav
+  {
+    position: relative;
+    width: 4em;
+    margin: 0 auto;
+  }
+
+  .nav:hover ul
+  {
+    display: block;
+    position: absolute;
+    left: -3em;
+  }
+}
+
+.nav span.top
+{
+  display: block;
+  
+  /* It's plain text and we want it to look like a button */
+  pointer-events: none;
+}
+
+/* Video applet */
+/* Hide home page video applet on mobile */
+#homevideo.videoapplet
+{
+  display: none;
+}
+
+/* Layout */
+#wrapper
+{
+  margin: 0 auto;
+}
+
+#logo
+{
+  padding-top: 1em;
+}
+
+#search
+{
+  padding: 0.5em;
+}
+
+#search input 
+{
+  width: 10em;
+}
+
+/* Centre logo, menu and search on small screens */
+#logo,
+#navbar,
+#search
+{
+  text-align: center;
+}
+
+#footerwrapper
+{
+  min-height: 6em;
+}
+
+#footer #links
+{
+  padding: 1em;
+  padding-bottom: 0;
+  text-align: right;
+}
+
+#footer #copyright
+{
+  padding: 1em;
+  text-align: right;
+}
+
+.video-list h2
+{
+  margin-left: 3%;
+  margin-top: 3%;
+}
+
+.video-list .item
+{
+  margin: 3%;
+}
+
+.video-list .item 
+{
+  padding: 1.5%;
+}
+
+.video-list .item .thumbnail
+{
+  width: 40%;
+  background-size: cover;
+  float: left;
+}
+
+.video-list .item .info
+{
+  width: 50%;
+  padding: 5%;
+  float: left;
+}
