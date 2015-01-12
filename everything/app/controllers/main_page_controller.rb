@@ -21,10 +21,20 @@ class MainPageController < ApplicationController
     @popular = YoutubeAuth.client
                 .videos_by(:author => 'raocow', :order_by => 'viewCount')
                 .videos.first(8)
-                .map { |v| {internal_id: Video.find_by_video_id(v.unique_id).id,
+                .map { |v| {
                             video_id: v.unique_id,
                             title: v.title,
                             views: v.view_count} }
+   
+    @popular.each do |v|
+      vid = Video.find_by_video_id(v[:video_id])
+
+      if vid != nil
+        v[:internal_id] = vid.id
+      else
+        v[:internal_id] = 0
+      end
+    end
 
   end
 

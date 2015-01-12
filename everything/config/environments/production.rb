@@ -80,4 +80,7 @@ Everything::Application.configure do
 
   # Make sure the port is correct (80)
   config.default_url_options = { port: 80 }
+
+  # Set mailer url
+  config.action_mailer.default_url_options = { :host => 'raocow.com' }
 end

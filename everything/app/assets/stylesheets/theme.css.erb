@@ -46,13 +46,13 @@ p, #footer
 /* Page background (cream dust) */
 html
 {
-  background-image: url('/assets/cream_dust.png');
+  background-image: url(<%= asset_path 'cream_dust.png' %>);
 }
 
 /* Header */
 #headerwrapper
 {
-  background: #85a440 url('/assets/header-back.png') repeat-x;
+  background: #85a440 url(<%= asset_path 'header-back.png' %>) repeat-x;
   box-shadow: 0px 5px 5px rgba(1, 1, 1, 0.15);
   
   /* Make box shadow appear above video-back, but below video */
@@ -63,7 +63,7 @@ html
 /* Header */
 #footerwrapper
 {
-  background: #85a440 url('/assets/footer-back.png') repeat-x;
+  background: #85a440 url(<%= asset_path 'footer-back.png' %>) repeat-x;
   background-position: center;
   box-shadow: 0px -3px 3px #AAA;
 }
@@ -80,7 +80,7 @@ html
 {
   padding: 1.5%;
   border: solid 1px #CCC;
-  background-image: url('/assets/striped_lens.png');
+  background-image: url(<%= asset_path 'striped_lens.png' %>);
   text-decoration: none;
   color: #000;
 }
@@ -88,7 +88,7 @@ html
 /* Border around videos in lists */
 .video-list  > .item:hover
 {
-  background-image: url('/assets/striped_lens_dimmed.png');
+  background-image: url(<%= asset_path 'striped_lens_dimmed.png' %>);
 }
 
 /* Navigation */

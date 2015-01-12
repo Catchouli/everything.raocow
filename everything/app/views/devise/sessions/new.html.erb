@@ -1,29 +1,41 @@
 <% provide(:title, 'Sign in') %>
 
-<h1>Sign in</h1>
+<div id="wrapper" class="center">
 
-<div class="center">
+  <h1>Sign in</h1>
+
+  <br><br>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
     <div><%= f.label :email %><br>
     <%= f.email_field :email, autofocus: true %></div>
 
+    <br><br>
+
     <div><%= f.label :password %><br>
       <%= f.password_field :password, autocomplete: "off" %></div>
+
+    <br><br>
 
     <% if devise_mapping.rememberable? %>
       <div>
         <%= f.label :remember_me, :class => "checkbox" do %>
           Remember me
-          <%= f.check_box :remember_me %>
+          <span style="margin-left: 2em;">
+            <%= f.check_box :remember_me %>
+          </span>
         <% end %>
       </div>
     <% end %>
 
+    <br><br>
+
     <div><%= f.submit "Sign in" %></div>
 
   <% end %>
+
+  <br><br>
 
   <%= render "devise/shared/links" %>
 

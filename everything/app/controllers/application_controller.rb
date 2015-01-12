@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
     @port = 80 if Rails.env.production?
 
-    { :host => "everything.raocow.com",
+    { :host => "raocow.com",
       :port => @port }
   end
 

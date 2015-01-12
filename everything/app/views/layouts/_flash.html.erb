@@ -1,3 +1,7 @@
 <% flash.each do |key, value| %>
-  <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+  <div class="alert alert-<%= key %>">
+    <div style="margin: 0 auto; max-width: 1200px;">
+      <%= value %>
+    </div>
+  </div>
 <% end %>
