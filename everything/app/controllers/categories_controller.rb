@@ -56,7 +56,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @videos = Video.all
+    @videos = Video.all.reverse
   end
 
   def update
