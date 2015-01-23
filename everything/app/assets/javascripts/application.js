@@ -17,4 +17,5 @@
 //= require jquery-ui
 //= require jquery.multiselect
 //= require fitvids
+//= require youtube_api
 //= require_tree .

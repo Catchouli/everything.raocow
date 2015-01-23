@@ -15,6 +15,20 @@
     max-width: 1000px !important;
   }
 
+  #homevideo-description-container
+  {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  #homevideo-description
+  {
+    display: block !important;
+    padding: 2em;
+    max-width: 1000px;
+    margin: 1em auto;
+  }
+
   .header-nav ul
   {
     border: none !important;

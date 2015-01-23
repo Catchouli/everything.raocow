@@ -25,7 +25,13 @@
   /* Show home page video applet on wider screens */
   #videowrapper
   {
-    background: #414141 url('/assets/video-back.png') repeat-x;
+    background: #414141 url('<%= asset_path 'video-back.png' %>') repeat-x;
     border-top: solid 1px #2b2b2b;
+  }
+
+  #homevideo-description
+  {
+    border: solid 1px #CCC;
+    background: url('<%= asset_path 'desc-back.png' %>');
   }
 }

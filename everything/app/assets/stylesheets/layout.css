@@ -59,7 +59,13 @@ h2
 
 /* Video applet */
 /* Hide home page video applet on mobile */
-#homevideo.videoapplet
+#homevideo.videoapplet,
+#homevideo-description,
+#homevideo-description-container
+{
+  display: none;
+}
+
 {
   display: none;
 }

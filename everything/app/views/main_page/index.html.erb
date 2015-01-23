@@ -1,13 +1,20 @@
 <div id="videowrapper">
-  <iframe
+  <div id="homevideo" class="videoapplet" data-videos="<%= @recent.map{ |v| v[:video_id] }.join ',' %>"></div>
+  <!--<iframe
     id="homevideo"
     class="videoapplet"
-    src="https://www.youtube.com/embed?listType=user_uploads&list=raocow"
+    src="https://www.youtube.com/embed?listType=user_uploads&list=raocow&enablejsapi=1"
     frameborder="0"
-    allowfullscreen></iframe>
+    allowfullscreen></iframe>-->
 </div>
 
 <div id="wrapper">
+
+  <div id="homevideo-description-container">
+    <div id="homevideo-description">
+      video description
+    </div>
+  </div>
 
   <%= render 'shared/homepage_video_list',
         videos: @recent,
