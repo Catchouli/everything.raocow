@@ -14,6 +14,42 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+// Seek to video time
+function seekTo(time)
+{
+  var splitTime = time.split(':')
+  
+  var hours = 0;
+  var minutes = 0;
+  var seconds = 0;
+
+  if (splitTime.length == 1)
+  {
+    seconds = parseInt(splitTime[0]);
+  }
+  else if (splitTime.length == 2)
+  {
+    minutes = parseInt(splitTime[0]);
+    seconds = parseInt(splitTime[1]);
+  }
+  else if (splitTime.length == 3)
+  {
+    hours = parseInt(splitTime[0]);
+    minutes = parseInt(splitTime[1]);
+    seconds = parseInt(splitTime[2]);
+  }
+  else
+  {
+    return false;
+  }
+
+  console.log("seeking to: " + hours + ":" + minutes + ":" + seconds);
+
+  player.seekTo(hours * 3600 + minutes * 60 + seconds);
+
+  return false;
+}
+
 // Update video description
 function updateVideoDescription()
 {
@@ -31,7 +67,9 @@ function updateVideoDescription()
   {
     var description = response.items[0].snippet.description;
 
-    description = description.replace(/\n/g, '<br>').replace(/(\A|[^=\]\'"a-zA-Z0-9])(http[s]?:\/\/(.+?)\/[^()<>\s]+)/g, '$1<a href="$2">$2</a>')
+    description = description.replace(/\n/g, '<br>')
+                    .replace(/(\A|[^=\]\'"a-zA-Z0-9])(http[s]?:\/\/(.+?)\/[^()<>\s]+)/g, '$1<a href="$2">$2</a>')
+                    .replace(/(\d+\:\d+(?::\d+)?)/g, '<a href="" onClick="seekTo(\'$1\')">$1</a>')
 
     console.log("description: " + description);
 
