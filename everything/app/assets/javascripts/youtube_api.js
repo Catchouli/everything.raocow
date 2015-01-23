@@ -69,7 +69,7 @@ function updateVideoDescription()
 
     description = description.replace(/\n/g, '<br>')
                     .replace(/(\A|[^=\]\'"a-zA-Z0-9])(http[s]?:\/\/(.+?)\/[^()<>\s]+)/g, '$1<a href="$2">$2</a>')
-                    .replace(/(\d+\:\d+(?::\d+)?)/g, '<a href="" onClick="seekTo(\'$1\')">$1</a>')
+                    .replace(/(\d+\:\d+(?::\d+)?)/g, '<a href="#" onClick="seekTo(\'$1\')">$1</a>')
 
     console.log("description: " + description);
 
