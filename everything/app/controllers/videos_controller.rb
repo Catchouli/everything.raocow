@@ -29,7 +29,7 @@ class VideosController < ApplicationController
       flash[:error] = "Invalid video id #{params[:id]}"
       redirect_to videos_path 
     else
-      @categories = Category.order('last_published DESC')
+      @categories = Category.all.reverse
     end
   end
 
