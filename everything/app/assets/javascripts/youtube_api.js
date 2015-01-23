@@ -1,6 +1,11 @@
 // Initialise google apis
-gapi.client.setApiKey('AIzaSyBojm1VfsUMi5DQnW2VtxvZpuN0Pq03Teg');
-gapi.client.load('youtube', 'v3', updateVideoDescription);
+function onClientLoad(event)
+{
+  console.log("gapi client loaded");
+
+  gapi.client.setApiKey('AIzaSyBojm1VfsUMi5DQnW2VtxvZpuN0Pq03Teg');
+  gapi.client.load('youtube', 'v3', updateVideoDescription);
+}
 
 // Load iframe api asyncronously
 var tag = document.createElement('script');
