@@ -1,6 +1,8 @@
 Everything::Application.routes.draw do
   root 'main_page#index'
 
+  get '/hi', to: 'main_page#hi'
+
   devise_for :users
 
   resources :channels do
