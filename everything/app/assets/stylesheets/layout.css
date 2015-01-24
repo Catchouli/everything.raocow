@@ -107,14 +107,13 @@ h2
 #footer #links
 {
   padding: 1em;
-  padding-bottom: 0;
-  text-align: right;
+  float: left;
 }
 
 #footer #copyright
 {
   padding: 1em;
-  text-align: right;
+  float: right;
 }
 
 .video-list h2
