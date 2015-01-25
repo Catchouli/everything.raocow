@@ -14,6 +14,9 @@
     <div class="item" data-video-id="<%= v[:video_id] %>">
       <a href="<%= video_url(v[:internal_id]) %>">
         <div class="thumbnail">
+          <p class="duration">
+            <%= v[:duration] %>
+          </p>
         </div>
         <div class="info wrapbroken">
           <div class="video-name"><%= v[:title] %></div>

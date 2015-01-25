@@ -21,7 +21,7 @@ module Everything
     # config.i18n.default_locale = :de
 
     # Auto load lib files
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib/**/)
 
     # Force encoding to utf-8
     config.encoding = "utf-8"

@@ -97,6 +97,23 @@ html
   background-image: url(<%= asset_path 'striped_lens_dimmed.png' %>);
 }
 
+/* Duration alignment */
+.video-list .item .thumbnail
+{
+  position: relative;
+}
+
+.video-list .item .thumbnail .duration
+{
+  position: absolute;
+  right: 1em;
+  bottom: 0;
+  color: #FFF;
+  text-decoration: none;
+  padding: 0.5em;
+  background: rgba(0, 0, 0, 0.5);
+}
+
 /* Navigation */
 .header-nav ul
 {

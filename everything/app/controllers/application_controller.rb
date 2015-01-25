@@ -18,6 +18,18 @@ class ApplicationController < ActionController::Base
       :port => @port }
   end
 
+  def duration_to_str(seconds)
+
+    format_str = '%H:%M:%S'
+
+    if seconds < 3600
+      format_str = '%M:%S'
+    end
+
+    Time.at(seconds).getutc.strftime(format_str)
+
+  end
+
   protected
     def set_start_time
       @start_time = Time.now

@@ -15,7 +15,8 @@ class MainPageController < ApplicationController
     @recent = recentVids.map { |v| {internal_id: v.id,
                                     video_id: v.video_id,
                                     title: videoData[v.video_id].title,
-                                    views: videoData[v.video_id].view_count} }
+                                    views: videoData[v.video_id].view_count,
+                                    duration: duration_to_str(videoData[v.video_id].duration) } }
 
     # Get popular videos (highest view count) straight from the youtube api
     @popular = YoutubeAuth.client
@@ -24,7 +25,8 @@ class MainPageController < ApplicationController
                 .map { |v| {
                             video_id: v.unique_id,
                             title: v.title,
-                            views: v.view_count} }
+                            views: v.view_count,
+                            duration: duration_to_str(v.duration) } }
    
     @popular.each do |v|
       vid = Video.find_by_video_id(v[:video_id])
