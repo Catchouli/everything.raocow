@@ -38,4 +38,8 @@ class MainPageController < ApplicationController
 
   end
 
+  def hi
+
+  end
+
 end
