@@ -17,7 +17,8 @@ class VideosController < ApplicationController
   end
 
   def uncategorised
-    Video.includes(:categories).where(:categorisations => { :video_id => nil } )
+    @videos = Video.includes(:categories).where(:categorisations => { :video_id => nil } )
+        .paginate(page: params[:page], per_page: 20)
   end
 
   def show
