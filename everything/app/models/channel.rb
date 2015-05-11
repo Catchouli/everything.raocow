@@ -34,9 +34,11 @@ class Channel < ActiveRecord::Base
     self.user_id = get_user_id
     self.save
 
-    YoutubeAuth.client.get_all_videos(user: self.username).each do |v|
+    ch = Yt::Channel.new(url: "youtube.com/#{self.username}")
+
+    ch.videos.each do |v|
       self.videos.new(title: v.title,
-                      video_id: v.unique_id,
+                      video_id: v.id,
                       published_at: v.published_at)
     end
 
@@ -53,15 +55,21 @@ class Channel < ActiveRecord::Base
 
       query = { user: self.username, fields: { published: time_range } }
 
-        YoutubeAuth.client.videos_by(query).videos.each do |v|
-          logger.info "Adding video: #{v.title}"
+      ch = Yt::Channel.new(url: "youtube.com/#{self.username}")
 
-          self.videos.new(title: v.title,
-                          video_id: v.unique_id,
+      last_published = self.videos.order('published_at DESC').first.published_at.utc.iso8601(0)
+
+      ch.videos.where(published_after: last_published).each do |v|
+
+        logger.info "Adding video: #{v.title}"
+
+        self.videos.new(title: v.title,
+                          video_id: v.id,
                           published_at: v.published_at)
 
-          self.save
-        end
+        self.save
+
+      end
     else
       logger.warn "update called on uninitialised channel"
     end

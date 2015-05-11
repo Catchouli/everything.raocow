@@ -15,6 +15,8 @@ Everything::Application.routes.draw do
     collection do
       get 'random'
       get 'search'
+      get 'feed', :defaults => { :format => 'rss' }
+      get 'uncategorised'
     end
   end
 

@@ -1,4 +1,5 @@
 require 'youtube_it'
+require 'yt'
 
 class YoutubeAuth < ActiveRecord::Base
 

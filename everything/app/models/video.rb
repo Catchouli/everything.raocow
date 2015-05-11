@@ -23,7 +23,7 @@ class Video < ActiveRecord::Base
   end
 
   def description
-    YoutubeAuth.client.video_by(self.video_id).description
+    Yt::Video.new(id: self.video_id).description
   end
 
   def time

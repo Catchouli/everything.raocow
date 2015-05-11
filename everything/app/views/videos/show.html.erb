@@ -48,7 +48,7 @@
       <br>
 
       <!-- Video description -->
-      <p><%= replace_linebreaks_br(@video.description) %></p>
+      <p><%= Iconv.conv('UTF-8//IGNORE', 'UTF-8', @video.description) %></p>
     </div>
   </div>
 

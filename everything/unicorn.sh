@@ -1,2 +1,2 @@
 #!/bin/sh
-unicorn -D --env production
+bundle exec unicorn -D --env production

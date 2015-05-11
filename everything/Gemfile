@@ -25,6 +25,8 @@ gem 'oauth2'
 gem 'google-api-client'
 gem 'unicorn'
 gem 'kgio'
+gem 'yt'
+gem 'iconv'
 
 gem 'devise'
 

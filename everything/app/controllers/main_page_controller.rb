@@ -10,26 +10,30 @@ class MainPageController < ApplicationController
 
     # Request info from youtube api
     videoIdList = recentVids.map { |v| v.video_id }
-    videoData = YoutubeAuth.client.videos(videoIdList)
+    internalIds = recentVids.map { |v| v.id }
+    videoData = Yt::Collections::Videos.new.where(id: videoIdList.join(','))
 
-    @recent = recentVids.map { |v| {internal_id: v.id,
-                                    video_id: v.video_id,
-                                    title: videoData[v.video_id].title,
-                                    views: videoData[v.video_id].view_count,
-                                    duration: duration_to_str(videoData[v.video_id].duration) } }
+    @recent = videoData.map.with_index { |v, i| {internal_id: internalIds[i],
+                                   video_id: v.id,
+                                   title: v.title,
+                                   views: v.view_count,
+                                   duration: duration_to_str(v.duration) } }
+
+    ch = Yt::Channel.new url: 'youtube.com/raocow'
 
     # Get popular videos (highest view count) straight from the youtube api
-    @popular = YoutubeAuth.client
-                .videos_by(:author => 'raocow', :order_by => 'viewCount')
-                .videos.first(8)
+    @popular = ch.videos.where(order: 'viewCount').first(8)
                 .map { |v| {
-                            video_id: v.unique_id,
+                            video_id: v.id,
                             title: v.title,
                             views: v.view_count,
                             duration: duration_to_str(v.duration) } }
+
+    # Get local ids
+    popularVids = Video.where(video_id: @popular.map { |v| v[:video_id] })
    
-    @popular.each do |v|
-      vid = Video.find_by_video_id(v[:video_id])
+    @popular.each.with_index do |v, i|
+      vid = popularVids[i]
 
       if vid != nil
         v[:internal_id] = vid.id

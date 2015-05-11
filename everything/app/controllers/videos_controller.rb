@@ -7,6 +7,19 @@ class VideosController < ApplicationController
                               per_page: 20).order('published_at DESC')
   end
 
+  def feed
+    @videos = Video.paginate(page: params[:page],
+                              per_page: 20).order('published_at DESC')
+
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+
+  def uncategorised
+    Video.includes(:categories).where(:categorisations => { :video_id => nil } )
+  end
+
   def show
     @video = Video.find_by_id(params[:id])
     
