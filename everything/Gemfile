@@ -30,6 +30,8 @@ gem 'iconv'
 
 gem 'devise'
 
+gem 'rack-mini-profiler'
+
 group :doc do
   gem 'sdoc', require: false
 end

@@ -6,12 +6,12 @@ class MainPageController < ApplicationController
 
     # Get recent videos - we get this locally instead of using the youtube
     # api in case it gets videos we don't have cached yet
-    recentVids = Video.order(:published_at => :desc).first 8
+    recentVids = Video.order(:published_at => :desc).first(8)
 
     # Request info from youtube api
     videoIdList = recentVids.map { |v| v.video_id }
     internalIds = recentVids.map { |v| v.id }
-    videoData = Yt::Collections::Videos.new.where(id: videoIdList.join(','))
+    videoData = Yt::Collections::Videos.new.where(part: 'snippet,statistics,contentDetails', id: videoIdList.join(','))
 
     @recent = videoData.map.with_index { |v, i| {internal_id: internalIds[i],
                                    video_id: v.id,
@@ -22,7 +22,9 @@ class MainPageController < ApplicationController
     ch = Yt::Channel.new url: 'youtube.com/raocow'
 
     # Get popular videos (highest view count) straight from the youtube api
-    @popular = ch.videos.where(order: 'viewCount').first(8)
+    popularIds = ch.videos.where(order: 'viewcount').first(8).map { |v| v.id }
+
+    @popular = Yt::Collections::Videos.new.where(part: 'snippet,statistics,contentDetails', id: popularIds.join(','))
                 .map { |v| {
                             video_id: v.id,
                             title: v.title,
